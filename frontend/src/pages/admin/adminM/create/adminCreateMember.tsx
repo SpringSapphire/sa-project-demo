@@ -101,7 +101,7 @@ const AdminCreateMember: FC = () => {
                         >
                             <Card>
                                 <Row gutter={[16, 16]}>
-                                    <Col xs={24} sm={24} md={24} lg={24} xl={10}>
+                                    <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                                         <Form.Item
                                             label="Username"
                                             name="Username"
@@ -112,8 +112,8 @@ const AdminCreateMember: FC = () => {
                                             <Input placeholder="ชื่อผู้ใช้" />
                                         </Form.Item>
                                     </Col>
-                                    <Col xs={0} sm={0} md={0} lg={0} xl={2} />
-                                    <Col xs={24} sm={24} md={24} lg={24} xl={10}>
+                                    <Col xs={0} sm={2} md={2} lg={2} xl={2} />
+                                    <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                                         <Form.Item
                                             label="Password"
                                             name="Password"
@@ -124,7 +124,7 @@ const AdminCreateMember: FC = () => {
                                     </Col>
                                 </Row>
                                 <Row gutter={[16, 16]}>
-                                    <Col xs={24} sm={24} md={24} lg={24} xl={10}>
+                                    <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                                         <Form.Item
                                             label="ชื่อ"
                                             name="FirstName"
@@ -133,8 +133,8 @@ const AdminCreateMember: FC = () => {
                                             <Input placeholder="ชื่อ" />
                                         </Form.Item>
                                     </Col>
-                                    <Col xs={0} sm={0} md={0} lg={0} xl={2} />
-                                    <Col xs={24} sm={24} md={24} lg={24} xl={10}>
+                                    <Col xs={0} sm={2} md={2} lg={2} xl={2} />
+                                    <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                                         <Form.Item
                                             label="นามสกุล"
                                             name="LastName"
@@ -145,7 +145,7 @@ const AdminCreateMember: FC = () => {
                                     </Col>
                                 </Row>
                                 <Row gutter={[16, 16]}>
-                                    <Col xs={24} sm={24} md={24} lg={24} xl={10}>
+                                    <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                                         <Form.Item
                                             label="Email"
                                             name="Email"
@@ -157,8 +157,8 @@ const AdminCreateMember: FC = () => {
                                             <Input placeholder="อีเมล" />
                                         </Form.Item>
                                     </Col>
-                                    <Col xs={0} sm={0} md={0} lg={0} xl={2} />
-                                    <Col xs={24} sm={24} md={24} lg={24} xl={10}>
+                                    <Col xs={0} sm={2} md={2} lg={2} xl={2} />
+                                    <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                                         <Form.Item
                                             label="Phone Number"
                                             name="Phone"
@@ -171,7 +171,7 @@ const AdminCreateMember: FC = () => {
                                     </Col>
                                 </Row>
                                 <Row gutter={[16, 16]}>
-                                    <Col xs={24} sm={24} md={24} lg={24} xl={10}>
+                                    <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                                         <Form.Item
                                             label="Gender"
                                             name="GenderID"
@@ -186,8 +186,8 @@ const AdminCreateMember: FC = () => {
                                             </Select>
                                         </Form.Item>
                                     </Col>
-                                    <Col xs={0} sm={0} md={0} lg={0} xl={2} />
-                                    <Col xs={24} sm={24} md={24} lg={24} xl={10}>
+                                    <Col xs={0} sm={2} md={2} lg={2} xl={2} />
+                                    <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                                         <Form.Item
                                             label="Date of Birth"
                                             name="Birthday"
@@ -202,7 +202,7 @@ const AdminCreateMember: FC = () => {
                                     </Col>
                                 </Row>
                                 <Row gutter={[16, 16]}>
-                                    <Col xs={24} sm={24} md={24} lg={24} xl={10}>
+                                    <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                                         <Form.Item
                                             name="OccupationID"
                                             label="อาชีพ"

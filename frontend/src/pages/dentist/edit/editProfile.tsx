@@ -197,7 +197,7 @@ const DentistProfile: FC = () => {
                                             <Input />
                                         </Form.Item>
                                     </Col>
-                                    <Col xs={0} sm={0} md={0} lg={0} xl={2} />
+                                    <Col xs={0} sm={2} md={2} lg={2} xl={2} />
                                     <Col xs={24} sm={24} md={24} lg={24} xl={10}>
                                         <Form.Item
                                             label="เบอร์โทรศัพท์"
@@ -229,7 +229,7 @@ const DentistProfile: FC = () => {
                                             </Select>
                                         </Form.Item>
                                     </Col>
-                                    <Col xs={0} sm={0} md={0} lg={0} xl={2} />
+                                    <Col xs={0} sm={2} md={2} lg={2} xl={2} />
                                     <Col xs={24} sm={24} md={24} lg={24} xl={10}>
                                         <Form.Item
                                             label="วันเกิด"

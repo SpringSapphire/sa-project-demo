@@ -46,10 +46,8 @@ const DentistProfile: FC = () => {
     const [genders, setGenders] = useState<GenderInterface[]>([]);
 
     // รับข้อมูลจาก params ที่ได้จากหน้า login
-    // let { id } = useParams();
-
-    // id ทดสอบ
-    let id = "1";
+    // ถ้าต้องการไป id อื่น ๆ ต้องพิมพ์ ใน URL เอง(ตอนนี้(11/10/2566))
+    let { id } = useParams();
 
     // อ้างอิง form กรอกข้อมูล
     const [form] = Form.useForm();
@@ -109,7 +107,7 @@ const DentistProfile: FC = () => {
                                 disabled={Disabled}
                             >
                                 <Row gutter={[16, 16]}>
-                                    <Col xs={24} sm={24} md={24} lg={24} xl={10}>
+                                    <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                                         <Form.Item
                                             label="Username"
                                             name="UserName"
@@ -124,7 +122,7 @@ const DentistProfile: FC = () => {
                                         </Form.Item>
                                     </Col>
                                     <Col xs={0} sm={0} md={0} lg={0} xl={2} />
-                                    <Col xs={24} sm={24} md={24} lg={24} xl={10}>
+                                    <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                                         <Form.Item
                                             label="Password"
                                             name="PassWord"
@@ -140,7 +138,7 @@ const DentistProfile: FC = () => {
                                     </Col>
                                 </Row>
                                 <Row gutter={[16, 16]}>
-                                    <Col xs={24} sm={24} md={24} lg={24} xl={10}>
+                                    <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                                         <Form.Item
                                             label="ชื่อจริง"
                                             name="FirstName"
@@ -155,7 +153,7 @@ const DentistProfile: FC = () => {
                                         </Form.Item>
                                     </Col>
                                     <Col xs={0} sm={0} md={0} lg={0} xl={2} />
-                                    <Col xs={24} sm={24} md={24} lg={24} xl={10}>
+                                    <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                                         <Form.Item
                                             label="นามกสุล"
                                             name="LastName"
@@ -171,7 +169,7 @@ const DentistProfile: FC = () => {
                                     </Col>
                                 </Row>
                                 <Row gutter={[16, 16]}>
-                                    <Col xs={24} sm={24} md={24} lg={24} xl={10}>
+                                    <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                                         <Form.Item
                                             label="อีเมล"
                                             name="Email"
@@ -190,7 +188,7 @@ const DentistProfile: FC = () => {
                                         </Form.Item>
                                     </Col>
                                     <Col xs={0} sm={0} md={0} lg={0} xl={2} />
-                                    <Col xs={24} sm={24} md={24} lg={24} xl={10}>
+                                    <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                                         <Form.Item
                                             label="เบอร์โทรศัพท์"
                                             name="Phone"
@@ -206,7 +204,7 @@ const DentistProfile: FC = () => {
                                     </Col>
                                 </Row>
                                 <Row gutter={[16, 16]}>
-                                    <Col xs={24} sm={24} md={24} lg={24} xl={10}>
+                                    <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                                         <Form.Item
                                             name="GenderID"
                                             label="เพศ"
@@ -222,7 +220,7 @@ const DentistProfile: FC = () => {
                                         </Form.Item>
                                     </Col>
                                     <Col xs={0} sm={0} md={0} lg={0} xl={2} />
-                                    <Col xs={24} sm={24} md={24} lg={24} xl={10}>
+                                    <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                                         <Form.Item
                                             label="วันเกิด"
                                             name="Birthday"

@@ -128,7 +128,7 @@ const AdminEditMemberProfile: FC = () => {
                         >
                             <Card>
                                 <Row gutter={[16, 16]}>
-                                    <Col xs={24} sm={24} md={24} lg={24} xl={10}>
+                                    <Col xs={24} sm={10} md={10} lg={10} xl={10}  >
                                         <Form.Item
                                             label="Username"
                                             name="UserName"
@@ -142,8 +142,8 @@ const AdminEditMemberProfile: FC = () => {
                                             <Input />
                                         </Form.Item>
                                     </Col>
-                                    <Col xs={0} sm={0} md={0} lg={0} xl={2} />
-                                    <Col xs={24} sm={24} md={24} lg={24} xl={10}>
+                                    <Col xs={0} sm={2} md={2} lg={2} xl={2} />
+                                    <Col xs={24} sm={10} md={10} lg={10} xl={10}  >
                                         <Form.Item
                                             label="Password"
                                             name="PassWord"
@@ -159,7 +159,7 @@ const AdminEditMemberProfile: FC = () => {
                                     </Col>
                                 </Row>
                                 <Row gutter={[16, 16]}>
-                                    <Col xs={24} sm={24} md={24} lg={24} xl={10}>
+                                    <Col xs={24} sm={10} md={10} lg={10} xl={10}  >
                                         <Form.Item
                                             label="ชื่อจริง"
                                             name="FirstName"
@@ -173,8 +173,8 @@ const AdminEditMemberProfile: FC = () => {
                                             <Input />
                                         </Form.Item>
                                     </Col>
-                                    <Col xs={0} sm={0} md={0} lg={0} xl={2} />
-                                    <Col xs={24} sm={24} md={24} lg={24} xl={10}>
+                                    <Col xs={0} sm={2} md={2} lg={2} xl={2} />
+                                    <Col xs={24} sm={10} md={10} lg={10} xl={10}  >
                                         <Form.Item
                                             label="นามกสุล"
                                             name="LastName"
@@ -190,7 +190,7 @@ const AdminEditMemberProfile: FC = () => {
                                     </Col>
                                 </Row>
                                 <Row gutter={[16, 16]}>
-                                    <Col xs={24} sm={24} md={24} lg={24} xl={10}>
+                                    <Col xs={24} sm={10} md={10} lg={10} xl={10}  >
                                         <Form.Item
                                             label="อีเมล"
                                             name="Email"
@@ -208,8 +208,8 @@ const AdminEditMemberProfile: FC = () => {
                                             <Input />
                                         </Form.Item>
                                     </Col>
-                                    <Col xs={0} sm={0} md={0} lg={0} xl={2} />
-                                    <Col xs={24} sm={24} md={24} lg={24} xl={10}>
+                                    <Col xs={0} sm={2} md={2} lg={2} xl={2} />
+                                    <Col xs={24} sm={10} md={10} lg={10} xl={10}  >
                                         <Form.Item
                                             label="เบอร์โทรศัพท์"
                                             name="Phone"
@@ -225,7 +225,7 @@ const AdminEditMemberProfile: FC = () => {
                                     </Col>
                                 </Row>
                                 <Row gutter={[16, 16]}>
-                                    <Col xs={24} sm={24} md={24} lg={24} xl={10}>
+                                    <Col xs={24} sm={10} md={10} lg={10} xl={10}  >
                                         <Form.Item
                                             name="GenderID"
                                             label="เพศ"
@@ -240,8 +240,8 @@ const AdminEditMemberProfile: FC = () => {
                                             </Select>
                                         </Form.Item>
                                     </Col>
-                                    <Col xs={0} sm={0} md={0} lg={0} xl={2} />
-                                    <Col xs={24} sm={24} md={24} lg={24} xl={10}>
+                                    <Col xs={0} sm={2} md={2} lg={2} xl={2} />
+                                    <Col xs={24} sm={10} md={10} lg={10} xl={10}  >
                                         <Form.Item
                                             label="วันเกิด"
                                             name="Birthday"
@@ -261,7 +261,7 @@ const AdminEditMemberProfile: FC = () => {
                                     </Col>
                                 </Row>
                                 <Row gutter={[16, 16]}>
-                                    <Col xs={24} sm={24} md={24} lg={24} xl={10}>
+                                    <Col xs={24} sm={10} md={10} lg={10} xl={10}  >
                                         <Form.Item
                                             name="OccupationID"
                                             label="อาชีพ"
