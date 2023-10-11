@@ -17,6 +17,7 @@ import type { DatePickerProps } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { DentistInterface } from "../../../../interfaces/IDentist";
 import { GenderInterface } from "../../../../interfaces/IGender";
+import { ImageUpload } from "../../../../interfaces/IUpload";
 import {
     CreateDentist,
     GetGenders,
@@ -41,7 +42,7 @@ const onDateChange: DatePickerProps["onChange"] = (date, dateString) => {
 const AdminEditDentistProfile: FC = () => {
     const navigate = useNavigate();
     const [messageApi, contextHolder] = message.useMessage();
-
+    const [profile, setProfile] = useState<ImageUpload>();
     const [dentsit, setDentist] = useState<DentistInterface>();
     const [genders, setGenders] = useState<GenderInterface[]>([]);
 
@@ -52,6 +53,7 @@ const AdminEditDentistProfile: FC = () => {
 
     const onFinish = async (values: DentistInterface) => {
         values.ID = dentsit?.ID;
+        values.Profile = profile?.thumbUrl;
         let res = await UpdateDentist(values);
         if (res.status) {
             messageApi.open({
@@ -67,6 +69,14 @@ const AdminEditDentistProfile: FC = () => {
                 content: "แก้ไขข้อมูลไม่สำเร็จ",
             });
         }
+    };
+
+    const normFile = (e: any) => {
+        if (Array.isArray(e)) {
+            return e;
+        }
+        setProfile(e?.fileList[0]);
+        return e?.fileList;
     };
 
     const getGendet = async () => {
@@ -90,6 +100,7 @@ const AdminEditDentistProfile: FC = () => {
                 Email: res.Email,
                 Phone: res.Phone,
                 Birthday: dayjs(res.Birthday),
+                Project: res.Project,
             });
         }
     };
@@ -103,18 +114,34 @@ const AdminEditDentistProfile: FC = () => {
         <div>
             {contextHolder}
             <Card>
-                <h2> แก้ไขข้อมูลส่วนตัว </h2>
-                <Divider />
-                <Row gutter={[16, 16]}>
-                    <Col xs={24} sm={24} md={24} lg={24} xl={8} />
-                    <Col xs={24} sm={24} md={24} lg={24} xl={16}>
-                        <Form
-                            name="basic"
-                            form={form}
-                            layout="vertical"
-                            onFinish={onFinish}
-                            autoComplete="off"
-                        >
+                <Form
+                    name="basic"
+                    form={form}
+                    layout="vertical"
+                    onFinish={onFinish}
+                    autoComplete="off"
+                >
+                    <h2> แก้ไขข้อมูลส่วนตัว </h2>
+                    <Divider />
+                    <Row gutter={[16, 16]}>
+                        <Col xs={24} sm={24} md={24} lg={24} xl={8}>
+                            <div style={{ marginLeft: "35%" }}>
+                                <Form.Item
+                                    label="รูปประจำตัว"
+                                    name="Profile"
+                                    valuePropName="fileList"
+                                    getValueFromEvent={normFile}
+                                >
+                                    <Upload maxCount={1} multiple={false} listType="picture-card">
+                                        <div>
+                                            <PlusOutlined />
+                                            <div style={{ marginTop: 8 }}>อัพโหลด</div>
+                                        </div>
+                                    </Upload>
+                                </Form.Item>
+                            </div>
+                        </Col>
+                        <Col xs={24} sm={24} md={24} lg={24} xl={16}>
                             <Card>
                                 <Row gutter={[16, 16]}>
                                     <Col xs={24} sm={10} md={10} lg={10} xl={10}>
@@ -273,9 +300,9 @@ const AdminEditDentistProfile: FC = () => {
                                     </Col>
                                 </Row>
                             </Card>
-                        </Form>
-                    </Col>
-                </Row>
+                        </Col>
+                    </Row>
+                </Form>
             </Card>
         </div>
     );
