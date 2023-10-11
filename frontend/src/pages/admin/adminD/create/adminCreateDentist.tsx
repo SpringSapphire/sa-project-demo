@@ -2,6 +2,7 @@ import React, { FC, useState, useEffect } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import { DentistInterface } from "../../../../interfaces/IDentist";
 import { GenderInterface } from "../../../../interfaces/IGender";
+import { ImageUpload } from "../../../../interfaces/IUpload";
 import { CreateDentist, GetGenders } from "../../../../services/https/https";
 import { useNavigate, Link } from "react-router-dom";
 import dayjs from "dayjs";
@@ -37,9 +38,11 @@ const AdminCreateDentist: FC = () => {
 
   const navigate = useNavigate();
   const [genders, setGenders] = useState<GenderInterface[]>([]);
+  const [profile, setProfile] = useState<ImageUpload>();
   const [messageApi, contextHolder] = message.useMessage();
 
   const onFinish = async (values: DentistInterface) => {
+    values.Profile = profile?.thumbUrl;
     let res = await CreateDentist(values);
     if (res.status) {
       messageApi.open({
@@ -66,6 +69,14 @@ const AdminCreateDentist: FC = () => {
     }
   };
 
+  const normFile = (e: any) => {
+    if (Array.isArray(e)) {
+      return e;
+    }
+    setProfile(e?.fileList[0]);
+    return e?.fileList;
+  };
+
   useEffect(() => {
     getGendet();
   }, []);
@@ -74,16 +85,33 @@ const AdminCreateDentist: FC = () => {
     <>
       {contextHolder}
       <Card>
-        <h2> เพิ่มข้อมูลทันตแพทย์</h2>
-        <Divider />
-        <Row gutter={[16, 16]}>
-          <Col xs={24} sm={24} md={24} lg={24} xl={8} />
-          <Col xs={24} sm={24} md={24} lg={24} xl={16}>
-            <Form name="basic"
-              layout="vertical"
-              onFinish={onFinish}
-              autoComplete="off"
-            >
+        <Form
+          name="basic"
+          layout="vertical"
+          onFinish={onFinish}
+          autoComplete="off"
+        >
+          <h2> เพิ่มข้อมูลทันตแพทย์</h2>
+          <Divider />
+          <Row gutter={[16, 16]}>
+            <Col xs={24} sm={24} md={24} lg={24} xl={8}>
+              <div style={{ marginLeft: "35%"}}>
+                <Form.Item
+                  label="รูปประจำตัว"
+                  name="Profile"
+                  valuePropName="fileList"
+                  getValueFromEvent={normFile}
+                >
+                  <Upload maxCount={1} multiple={false} listType="picture-card">
+                    <div>
+                      <PlusOutlined />
+                      <div style={{ marginTop: 8 }}>อัพโหลด</div>
+                    </div>
+                  </Upload>
+                </Form.Item>
+              </div>
+            </Col>
+            <Col xs={24} sm={24} md={24} lg={24} xl={16}>
               <Card>
                 <Row gutter={[16, 16]}>
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
@@ -210,9 +238,9 @@ const AdminCreateDentist: FC = () => {
                   </Col>
                 </Row>
               </Card>
-            </Form>
-          </Col>
-        </Row>
+            </Col>
+          </Row>
+        </Form>
       </Card>
     </>
   );

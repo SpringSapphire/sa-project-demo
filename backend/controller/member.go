@@ -42,6 +42,7 @@ func CreateMember(c *gin.Context) {
 		Email:      member.Email,
 		Birthday:   member.Birthday,
 		Phone:      member.Phone,
+		Profile:    member.Profile,
 	}
 	// บันทึก
 	if err := entity.DB().Create(&m).Error; err != nil {

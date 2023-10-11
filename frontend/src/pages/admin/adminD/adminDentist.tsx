@@ -15,6 +15,14 @@ const AdminDentist: FC = () => {
       key: "id",
     },
     {
+      title: "รูปประจำตัว",
+      dataIndex: "Profile",
+      key: "profile",
+      render: (text, record, index) => (
+        <img src={record.Profile} alt = {record.Profile} width="50%" />
+      )
+    },
+    {
       title: "Username",
       dataIndex: "UserName",
       key: "username",
