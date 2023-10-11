@@ -108,13 +108,13 @@ const AdminEditMemberProfile: FC = () => {
         }
     };
 
-    const normFile = (e: any) => {
-        if (Array.isArray(e)) {
-            return e;
-        }
-        setProfile(e?.fileList[0]);
-        return e?.fileList;
-    };
+    // const normFile = (e: any) => {
+    //     if (Array.isArray(e)) {
+    //         return e;
+    //     }
+    //     setProfile(e?.fileList[0]);
+    //     return e?.fileList;
+    // };
 
     useEffect(() => {
         getGendet();
@@ -137,7 +137,7 @@ const AdminEditMemberProfile: FC = () => {
                     <Divider />
                     <Row gutter={[16, 16]}>
                         <Col xs={24} sm={24} md={24} lg={24} xl={8}>
-                            <div style={{ marginLeft: "35%" }}>
+                            {/* <div style={{ marginLeft: "35%" }}>
                                 <Form.Item
                                     label="รูปประจำตัว"
                                     name="Profile"
@@ -151,7 +151,7 @@ const AdminEditMemberProfile: FC = () => {
                                         </div>
                                     </Upload>
                                 </Form.Item>
-                            </div>
+                            </div> */}
                         </Col>
                         <Col xs={24} sm={24} md={24} lg={24} xl={16}>
                             <Card>
