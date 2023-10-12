@@ -62,7 +62,7 @@ const AdminCreateDentist: FC = () => {
     }
   };
 
-  const getGendet = async () => {
+  const getGender = async () => {
     let res = await GetGenders();
     if (res) {
       setGenders(res);
@@ -78,7 +78,7 @@ const AdminCreateDentist: FC = () => {
   };
 
   useEffect(() => {
-    getGendet();
+    getGender();
   }, []);
 
   return (

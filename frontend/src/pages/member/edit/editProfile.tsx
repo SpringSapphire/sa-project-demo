@@ -19,7 +19,7 @@ import { MemberInterface } from "../../../interfaces/IMember";
 import { GenderInterface } from "../../../interfaces/IGender";
 import {
   GetGenders,
-  GetMemberById,
+  GetMemberByUsername,
   UpdateDentist,
 } from "../../../services/https/https";
 import { useNavigate, useParams } from "react-router-dom";
@@ -45,7 +45,7 @@ const MemberEditProfile: FC = () => {
   const [genders, setGenders] = useState<GenderInterface[]>([]);
 
   // รับข้อมูลจาก params
-  let { id } = useParams();
+  let { username } = useParams();
   // อ้างอิง form กรอกข้อมูล
   const [form] = Form.useForm();
 
@@ -68,15 +68,15 @@ const MemberEditProfile: FC = () => {
     }
   };
 
-  const getGendet = async () => {
+  const getGender = async () => {
     let res = await GetGenders();
     if (res) {
       setGenders(res);
     }
   };
 
-  const getMemberById = async () => {
-    let res = await GetMemberById(Number(id));
+  const getMemberByUsername = async () => {
+    let res = await GetMemberByUsername(username);
     if (res) {
       setMember(res);
       // set form ข้อมูลเริ่มของผู่้ใช้ที่เราแก้ไข
@@ -95,8 +95,8 @@ const MemberEditProfile: FC = () => {
   };
 
   useEffect(() => {
-    getGendet();
-    getMemberById();
+    getGender();
+    getMemberByUsername();
   }, []);
 
   return (

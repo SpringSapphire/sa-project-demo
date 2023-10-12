@@ -1,4 +1,5 @@
 import { DentistInterface } from "../../interfaces/IDentist";
+import { MemberInterface } from "../../interfaces/IMember";
 
 const apiUrl = "http://localhost:8080";
 
@@ -65,12 +66,12 @@ async function GetOccupations() {
   return res;
 }
 
-async function DeleteDentistByID(id: Number | undefined) {
+async function DeleteDentistByUsername(username: string | undefined) {
   const requestOptions = {
     method: "DELETE"
   };
 
-  let res = await fetch(`${apiUrl}/dentists/${id}`, requestOptions)
+  let res = await fetch(`${apiUrl}/dentists/${username}`, requestOptions)
     .then((response) => response.json())
     .then((res) => {
       if (res.data) {
@@ -83,12 +84,12 @@ async function DeleteDentistByID(id: Number | undefined) {
   return res;
 }
 
-async function GetDentistById(id: Number | undefined) {
+async function GetDentistByUsername(username: string | undefined) {
   const requestOptions = {
     method: "GET"
   };
 
-  let res = await fetch(`${apiUrl}/dentist/${id}`, requestOptions)
+  let res = await fetch(`${apiUrl}/dentist/${username}`, requestOptions)
     .then((response) => response.json())
     .then((res) => {
       if (res.data) {
@@ -163,12 +164,12 @@ async function GetMembers() {
   return res;
 }
 
-async function DeleteMemberByID(id: Number | undefined) {
+async function DeleteMemberByUsername(username: string | undefined) {
   const requestOptions = {
     method: "DELETE"
   };
 
-  let res = await fetch(`${apiUrl}/members/${id}`, requestOptions)
+  let res = await fetch(`${apiUrl}/members/${username}`, requestOptions)
     .then((response) => response.json())
     .then((res) => {
       if (res.data) {
@@ -181,12 +182,12 @@ async function DeleteMemberByID(id: Number | undefined) {
   return res;
 }
 
-async function GetMemberById(id: Number | undefined) {
+async function GetMemberByUsername(username: string | undefined) {
   const requestOptions = {
     method: "GET"
   };
 
-  let res = await fetch(`${apiUrl}/member/${id}`, requestOptions)
+  let res = await fetch(`${apiUrl}/member/${username}`, requestOptions)
     .then((response) => response.json())
     .then((res) => {
       if (res.data) {
@@ -200,7 +201,7 @@ async function GetMemberById(id: Number | undefined) {
 }
 
 
-async function CreateMember(data: DentistInterface) {
+async function CreateMember(data: MemberInterface) {
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -220,7 +221,7 @@ async function CreateMember(data: DentistInterface) {
   return res;
 }
 
-async function UpdateMember(data: DentistInterface) {
+async function UpdateMember(data: MemberInterface) {
   const requestOptions = {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
@@ -244,13 +245,13 @@ export {
   GetDentists,
   CreateDentist,
   GetGenders,
-  DeleteDentistByID,
-  GetDentistById,
+  DeleteDentistByUsername,
+  GetDentistByUsername,
   UpdateDentist,
   GetMembers,
   CreateMember,
-  DeleteMemberByID,
-  GetMemberById,
+  DeleteMemberByUsername,
+  GetMemberByUsername,
   UpdateMember,
   GetOccupations,
 };

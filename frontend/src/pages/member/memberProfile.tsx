@@ -20,8 +20,7 @@ import { GenderInterface } from "../../interfaces/IGender";
 import { OccupationInterface } from "../../interfaces/IOcc";
 import {
   GetGenders,
-  GetMemberById,
-  UpdateMember,
+  GetMemberByUsername,
 } from "../../services/https/https";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import dayjs from "dayjs";
@@ -46,8 +45,7 @@ const MemberProfile: FC = () => {
   const [genders, setGenders] = useState<GenderInterface[]>([]);
 
   // รับข้อมูลจาก params ที่ได้จากหน้า login
-  // ถ้าต้องการไป id อื่น ๆ ต้องพิมพ์ ใน URL เอง(ตอนนี้(11/10/2566))
-  let { id } = useParams();
+  let { username } = useParams();
 
   // อ้างอิง form กรอกข้อมูล
   const [form] = Form.useForm();
@@ -58,7 +56,7 @@ const MemberProfile: FC = () => {
 
   const [Disabled] = useState<boolean>(true);
 
-  const getGendet = async () => {
+  const getGender = async () => {
     let res = await GetGenders();
     if (res) {
       setGenders(res);
@@ -66,7 +64,7 @@ const MemberProfile: FC = () => {
   };
 
   const getMemberById = async () => {
-    let res = await GetMemberById(Number(id));
+    let res = await GetMemberByUsername(username);
     if (res) {
       setMember(res);
       // set form ข้อมูลเริ่มของผู่้ใช้ที่เราแก้ไข
@@ -85,7 +83,7 @@ const MemberProfile: FC = () => {
   };
 
   useEffect(() => {
-    getGendet();
+    getGender();
     getMemberById();
   }, []);
 

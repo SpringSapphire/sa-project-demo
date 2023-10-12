@@ -13,18 +13,18 @@ func main() {
 
 	//Dentists Routes
 	r.GET("/dentists", controller.ListDentists)
-	r.GET("/dentist/:id", controller.GetDentist)
+	r.GET("/dentist/:username", controller.GetDentist)
 	r.POST("/dentists", controller.CreateDentist)
 	r.PATCH("/dentists", controller.UpdateDentist)
-	r.DELETE("/dentists/:id", controller.DeleteDentist)
+	r.DELETE("/dentists/:username", controller.DeleteDentist)
 
 	//Member Routes
 	r.GET("/members", controller.ListMembers)
-	r.GET("/member/:id", controller.GetMember)
+	r.GET("/member/:username", controller.GetMember)
 	r.POST("/members", controller.CreateMember)
 	r.PATCH("/members", controller.UpdateMember)
-	r.DELETE("/members/:id", controller.DeleteMember)
-	
+	r.DELETE("/members/:username", controller.DeleteMember)
+
 	//Occupations Routes
 	r.GET("/occupations", controller.ListOccupations)
 	//Genders Routes

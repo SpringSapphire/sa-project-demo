@@ -6,7 +6,7 @@ import type { ColumnsType } from "antd/es/table";
 import {
   GetGenders,
   GetMembers,
-  DeleteMemberByID,
+  DeleteMemberByUsername,
 } from "../../../services/https/https";
 import { PlusOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
@@ -73,7 +73,7 @@ const AdminMember: FC = () => {
       render: (text, record, index) => (
         <>
           <Button
-            onClick={() => navigate(`/admin/member/edit/${record.ID}`)}
+            onClick={() => navigate(`/admin/member/edit/${record.UserName}`)}
             shape="circle"
             icon={<EditOutlined />}
             size={"large"}
@@ -98,7 +98,7 @@ const AdminMember: FC = () => {
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [modalText, setModalText] = useState<String>();
-  const [deleteId, setDeleteId] = useState<Number>();
+  const [deleteUsername, setDeleteUsername] = useState<string>();
 
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -115,13 +115,13 @@ const AdminMember: FC = () => {
     setModalText(
       `คุณต้องการลบข้อมูลผู้ใช้ "${val.FirstName} ${val.LastName}" หรือไม่ ?`
     );
-    setDeleteId(val.ID);
+    setDeleteUsername(val.UserName);
     setOpen(true);
   };
 
   const handleOk = async () => {
     setConfirmLoading(true);
-    let res = await DeleteMemberByID(deleteId);
+    let res = await DeleteMemberByUsername(deleteUsername);
     if (res) {
       setOpen(false);
       messageApi.open({

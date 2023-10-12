@@ -20,7 +20,7 @@ import { GenderInterface } from "../../interfaces/IGender";
 import {
   CreateDentist,
   GetGenders,
-  GetDentistById,
+  GetDentistByUsername,
   UpdateDentist,
 } from "../../services/https/https";
 import { useNavigate, useParams, Link } from "react-router-dom";
@@ -47,7 +47,7 @@ const DentistProfile: FC = () => {
 
   // รับข้อมูลจาก params ที่ได้จากหน้า login
   // ถ้าต้องการไป id อื่น ๆ ต้องพิมพ์ ใน URL เอง(ตอนนี้(11/10/2566))
-  let { id } = useParams();
+  let { username } = useParams();
 
   // อ้างอิง form กรอกข้อมูล
   const [form] = Form.useForm();
@@ -58,7 +58,7 @@ const DentistProfile: FC = () => {
 
   const [Disabled] = useState<boolean>(true);
 
-  const getGendet = async () => {
+  const getGender = async () => {
     let res = await GetGenders();
     if (res) {
       setGenders(res);
@@ -66,7 +66,7 @@ const DentistProfile: FC = () => {
   };
 
   const getDentistById = async () => {
-    let res = await GetDentistById(Number(id));
+    let res = await GetDentistByUsername(username);
     if (res) {
       setDentist(res);
       // set form ข้อมูลเริ่มของผู่้ใช้ที่เราแก้ไข
@@ -84,7 +84,7 @@ const DentistProfile: FC = () => {
   };
 
   useEffect(() => {
-    getGendet();
+    getGender();
     getDentistById();
   }, []);
 
