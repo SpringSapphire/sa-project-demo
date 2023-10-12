@@ -4,7 +4,6 @@ import { MemberInterface } from "../../../interfaces/IMember";
 import { Link, useNavigate } from "react-router-dom";
 import type { ColumnsType } from "antd/es/table";
 import {
-  GetGenders,
   GetMembers,
   DeleteMemberByUsername,
 } from "../../../services/https/https";
@@ -19,22 +18,30 @@ const AdminMember: FC = () => {
       key: "id",
     },
     {
-      title: "Username",
+      title: "รูปประจำตัว",
+      dataIndex: "Profile",
+      key: "profile",
+      render: (text, record, index) => (
+        <img src={record.Profile} alt={record.Profile} width="30%" />
+      ),
+    },
+    {
+      title: "ชื่อบัญชี",
       dataIndex: "UserName",
       key: "username",
     },
     {
-      title: "Password",
+      title: "รหัสผ่าน",
       dataIndex: "PassWord",
       key: "password",
     },
     {
-      title: "FirstName",
+      title: "ชื่อ",
       dataIndex: "FirstName",
       key: "firstname",
     },
     {
-      title: "LastName",
+      title: "นามสกุล",
       dataIndex: "LastName",
       key: "lastname",
     },
@@ -44,24 +51,24 @@ const AdminMember: FC = () => {
       key: "email",
     },
     {
-      title: "Gender",
+      title: "เพศ",
       dataIndex: "Gender",
       key: "gender",
       render: (text, item, index) => item.Gender?.GenderName,
     },
     {
-      title: "Birthday",
+      title: "วันเกิด",
       dataIndex: "Birthday",
       key: "birthday",
       render: (text: string) => dayjs(text).format("DD/MM/YYYY"),
     },
     {
-      title: "Phone Number",
+      title: "เบอร์โทรศัพท์",
       dataIndex: "Phone",
       key: "phone",
     },
     {
-      title: "Occupation",
+      title: "อาชีพ",
       dataIndex: "Occupation",
       key: "occupation",
       render: (text, item, index) => item.Occupation?.OccupationName,
@@ -150,7 +157,7 @@ const AdminMember: FC = () => {
   return (
     <main>
       {contextHolder}
-      <Card style={{ maxHeight: "1000vw" }}>
+      <Card style={{ height: "80vh" }}>
         <Card>
           <Row>
             <Col
@@ -182,6 +189,8 @@ const AdminMember: FC = () => {
               rowKey="ID"
               columns={columns}
               dataSource={members}
+              pagination={{ pageSize: 4 }}
+              size="small"
             />
           </div>
           <Modal

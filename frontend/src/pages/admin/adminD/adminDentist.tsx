@@ -4,7 +4,6 @@ import { DentistInterface } from "../../../interfaces/IDentist";
 import { Link, useNavigate } from "react-router-dom";
 import type { ColumnsType } from "antd/es/table";
 import {
-  GetGenders,
   GetDentists,
   DeleteDentistByUsername,
 } from "../../../services/https/https";
@@ -23,26 +22,26 @@ const AdminDentist: FC = () => {
       dataIndex: "Profile",
       key: "profile",
       render: (text, record, index) => (
-        <img src={record.Profile} alt={record.Profile} width="50%" />
+        <img src={record.Profile} alt={record.Profile} width="30%" />
       ),
     },
     {
-      title: "Username",
+      title: "ชื่อบัญชี",
       dataIndex: "UserName",
       key: "username",
     },
     {
-      title: "Password",
+      title: "รหัสผ่าน",
       dataIndex: "PassWord",
       key: "password",
     },
     {
-      title: "FirstName",
+      title: "ชื่อ",
       dataIndex: "FirstName",
       key: "firstname",
     },
     {
-      title: "LastName",
+      title: "นามสกุล",
       dataIndex: "LastName",
       key: "lastname",
     },
@@ -52,19 +51,19 @@ const AdminDentist: FC = () => {
       key: "email",
     },
     {
-      title: "Gender",
+      title: "เพศ",
       dataIndex: "Gender",
       key: "gender",
       render: (text, item, index) => item.Gender?.GenderName,
     },
     {
-      title: "Birthday",
+      title: "วันเกิด",
       dataIndex: "Birthday",
       key: "birthday",
       render: (text: string) => dayjs(text).format("DD/MM/YYYY"),
     },
     {
-      title: "Phone Number",
+      title: "เบอร์โทรศัพท์",
       dataIndex: "Phone",
       key: "phone",
     },
@@ -152,7 +151,7 @@ const AdminDentist: FC = () => {
   return (
     <main>
       {contextHolder}
-      <Card style={{ maxHeight: "1000vw" }}>
+      <Card style={{ height: "80vh" }}>
         <Card>
           <Row>
             <Col
@@ -184,6 +183,8 @@ const AdminDentist: FC = () => {
               rowKey="ID"
               columns={columns}
               dataSource={dentists}
+              pagination={{ pageSize: 4 }}
+              size="small"
             />
           </div>
           <Modal

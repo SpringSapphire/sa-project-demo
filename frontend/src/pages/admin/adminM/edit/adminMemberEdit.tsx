@@ -320,7 +320,6 @@ const AdminEditMemberProfile: FC = () => {
                         <Button
                           type="primary"
                           htmlType="submit"
-                          icon={<PlusOutlined />}
                         >
                           ยืนยัน
                         </Button>
