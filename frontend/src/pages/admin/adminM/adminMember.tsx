@@ -3,7 +3,11 @@ import { Table, Button, Row, Col, Divider, Card, Modal, message } from "antd";
 import { MemberInterface } from "../../../interfaces/IMember";
 import { Link, useNavigate } from "react-router-dom";
 import type { ColumnsType } from "antd/es/table";
-import { GetGenders, GetMembers, DeleteMemberByID } from "../../../services/https/https";
+import {
+  GetGenders,
+  GetMembers,
+  DeleteMemberByID,
+} from "../../../services/https/https";
 import { PlusOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 
@@ -101,7 +105,7 @@ const AdminMember: FC = () => {
   const getMembers = async () => {
     let res = await GetMembers();
     console.log(res);
-    
+
     if (res) {
       setMembers(res);
     }
@@ -153,9 +157,9 @@ const AdminMember: FC = () => {
               span={22}
               style={{ textAlign: "start", justifyItems: "center" }}
             >
-              <h2>ข้อมูลทันตแพทย์</h2>
+              <h2>ข้อมูลสมาชิก</h2>
             </Col>
-            
+
             <Col
               span={2}
               style={{

@@ -95,7 +95,7 @@ const AdminCreateDentist: FC = () => {
           <Divider />
           <Row gutter={[16, 16]}>
             <Col xs={24} sm={24} md={24} lg={24} xl={8}>
-              <div style={{ marginLeft: "35%"}}>
+              <div style={{ marginLeft: "35%" }}>
                 <Form.Item
                   label="รูปประจำตัว"
                   name="Profile"

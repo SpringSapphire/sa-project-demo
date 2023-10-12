@@ -3,7 +3,11 @@ import { Table, Button, Row, Col, Divider, Card, Modal, message } from "antd";
 import { DentistInterface } from "../../../interfaces/IDentist";
 import { Link, useNavigate } from "react-router-dom";
 import type { ColumnsType } from "antd/es/table";
-import { GetGenders, GetDentists, DeleteDentistByID } from "../../../services/https/https";
+import {
+  GetGenders,
+  GetDentists,
+  DeleteDentistByID,
+} from "../../../services/https/https";
 import { PlusOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 
@@ -19,8 +23,8 @@ const AdminDentist: FC = () => {
       dataIndex: "Profile",
       key: "profile",
       render: (text, record, index) => (
-        <img src={record.Profile} alt = {record.Profile} width="50%" />
-      )
+        <img src={record.Profile} alt={record.Profile} width="50%" />
+      ),
     },
     {
       title: "Username",
@@ -103,7 +107,7 @@ const AdminDentist: FC = () => {
   const getDentists = async () => {
     let res = await GetDentists();
     console.log(res);
-    
+
     if (res) {
       setDentists(res);
     }
@@ -157,7 +161,7 @@ const AdminDentist: FC = () => {
             >
               <h2>ข้อมูลทันตแพทย์</h2>
             </Col>
-            
+
             <Col
               span={2}
               style={{
