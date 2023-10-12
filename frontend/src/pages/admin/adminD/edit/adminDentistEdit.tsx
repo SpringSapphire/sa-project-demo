@@ -19,9 +19,8 @@ import { DentistInterface } from "../../../../interfaces/IDentist";
 import { GenderInterface } from "../../../../interfaces/IGender";
 import { ImageUpload } from "../../../../interfaces/IUpload";
 import {
-  CreateDentist,
   GetGenders,
-  GetDentistById,
+  GetDentistByUsername,
   UpdateDentist,
 } from "../../../../services/https/https";
 import { useNavigate, useParams, Link } from "react-router-dom";
@@ -47,7 +46,7 @@ const AdminEditDentistProfile: FC = () => {
   const [genders, setGenders] = useState<GenderInterface[]>([]);
 
   // รับข้อมูลจาก params
-  let { id } = useParams();
+  let { username } = useParams();
   // อ้างอิง form กรอกข้อมูล
   const [form] = Form.useForm();
 
@@ -79,15 +78,15 @@ const AdminEditDentistProfile: FC = () => {
     return e?.fileList;
   };
 
-  const getGendet = async () => {
+  const getGender = async () => {
     let res = await GetGenders();
     if (res) {
       setGenders(res);
     }
   };
 
-  const getDentistById = async () => {
-    let res = await GetDentistById(Number(id));
+  const getDentistByUserName = async () => {
+    let res = await GetDentistByUsername(username);
     if (res) {
       setDentist(res);
       // set form ข้อมูลเริ่มของผู่้ใช้ที่เราแก้ไข
@@ -106,8 +105,8 @@ const AdminEditDentistProfile: FC = () => {
   };
 
   useEffect(() => {
-    getGendet();
-    getDentistById();
+    getGender();
+    getDentistByUserName();
   }, []);
 
   return (

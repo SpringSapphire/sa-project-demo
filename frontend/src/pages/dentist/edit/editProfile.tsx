@@ -18,9 +18,8 @@ import { PlusOutlined } from "@ant-design/icons";
 import { DentistInterface } from "../../../interfaces/IDentist";
 import { GenderInterface } from "../../../interfaces/IGender";
 import {
-  CreateDentist,
   GetGenders,
-  GetDentistById,
+  GetDentistByUsername,
   UpdateDentist,
 } from "../../../services/https/https";
 import { useNavigate, useParams } from "react-router-dom";
@@ -46,7 +45,7 @@ const DentistEditProfile: FC = () => {
   const [genders, setGenders] = useState<GenderInterface[]>([]);
 
   // รับข้อมูลจาก params
-  let { id } = useParams();
+  let { username } = useParams();
   // อ้างอิง form กรอกข้อมูล
   const [form] = Form.useForm();
 
@@ -69,7 +68,7 @@ const DentistEditProfile: FC = () => {
     }
   };
 
-  const getGendet = async () => {
+  const getGender = async () => {
     let res = await GetGenders();
     if (res) {
       setGenders(res);
@@ -77,7 +76,7 @@ const DentistEditProfile: FC = () => {
   };
 
   const getDentistById = async () => {
-    let res = await GetDentistById(Number(id));
+    let res = await GetDentistByUsername(username);
     if (res) {
       setDentist(res);
       // set form ข้อมูลเริ่มของผู่้ใช้ที่เราแก้ไข
@@ -95,7 +94,7 @@ const DentistEditProfile: FC = () => {
   };
 
   useEffect(() => {
-    getGendet();
+    getGender();
     getDentistById();
   }, []);
 

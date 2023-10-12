@@ -20,7 +20,7 @@ import { GenderInterface } from "../../../../interfaces/IGender";
 import { OccupationInterface } from "../../../../interfaces/IOcc";
 import {
   GetGenders,
-  GetMemberById,
+  GetMemberByUsername,
   UpdateMember,
   GetOccupations,
 } from "../../../../services/https/https";
@@ -50,7 +50,7 @@ const AdminEditMemberProfile: FC = () => {
   const [profile, setProfile] = useState<ImageUpload>();
 
   // รับข้อมูลจาก params
-  let { id } = useParams();
+  let { username } = useParams();
   // อ้างอิง form กรอกข้อมูล
   const [form] = Form.useForm();
 
@@ -81,15 +81,15 @@ const AdminEditMemberProfile: FC = () => {
     }
   };
 
-  const getGendet = async () => {
+  const getGender = async () => {
     let res = await GetGenders();
     if (res) {
       setGenders(res);
     }
   };
 
-  const getMemberById = async () => {
-    let res = await GetMemberById(Number(id));
+  const getMemberByUsername = async () => {
+    let res = await GetMemberByUsername(username);
     if (res) {
       setMember(res);
       // set form ข้อมูลเริ่มของผู่้ใช้ที่เราแก้ไข
@@ -117,8 +117,8 @@ const AdminEditMemberProfile: FC = () => {
   // };
 
   useEffect(() => {
-    getGendet();
-    getMemberById();
+    getGender();
+    getMemberByUsername();
     getOcccupation();
   }, []);
 

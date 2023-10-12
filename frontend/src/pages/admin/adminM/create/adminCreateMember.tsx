@@ -68,7 +68,7 @@ const AdminCreateMember: FC = () => {
     }
   };
 
-  const getGendet = async () => {
+  const getGender = async () => {
     let res = await GetGenders();
     if (res) {
       setGenders(res);
@@ -91,7 +91,7 @@ const AdminCreateMember: FC = () => {
   };
 
   useEffect(() => {
-    getGendet();
+    getGender();
     getOcccupation();
   }, []);
 
