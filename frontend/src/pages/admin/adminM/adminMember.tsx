@@ -18,14 +18,6 @@ const AdminMember: FC = () => {
       key: "id",
     },
     {
-      title: "รูปประจำตัว",
-      dataIndex: "Profile",
-      key: "profile",
-      render: (text, record, index) => (
-        <img src={record.Profile} alt={record.Profile} width="30%" />
-      ),
-    },
-    {
       title: "ชื่อบัญชี",
       dataIndex: "UserName",
       key: "username",

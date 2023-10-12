@@ -103,18 +103,9 @@ const AdminEditMemberProfile: FC = () => {
         Phone: res.Phone,
         Birthday: dayjs(res.Birthday),
         OccupationID: res.OccupationID,
-        Profile: res.Profile,
       });
     }
   };
-
-  // const normFile = (e: any) => {
-  //     if (Array.isArray(e)) {
-  //         return e;
-  //     }
-  //     setProfile(e?.fileList[0]);
-  //     return e?.fileList;
-  // };
 
   useEffect(() => {
     getGender();
@@ -137,21 +128,6 @@ const AdminEditMemberProfile: FC = () => {
           <Divider />
           <Row gutter={[16, 16]}>
             <Col xs={24} sm={24} md={24} lg={24} xl={8}>
-              {/* <div style={{ marginLeft: "35%" }}>
-                                <Form.Item
-                                    label="รูปประจำตัว"
-                                    name="Profile"
-                                    valuePropName="fileList"
-                                    getValueFromEvent={normFile}
-                                >
-                                    <Upload maxCount={1} multiple={false} listType="picture-card">
-                                        <div>
-                                            <PlusOutlined />
-                                            <div style={{ marginTop: 8 }}>อัพโหลด</div>
-                                        </div>
-                                    </Upload>
-                                </Form.Item>
-                            </div> */}
             </Col>
             <Col xs={24} sm={24} md={24} lg={24} xl={16}>
               <Card>
