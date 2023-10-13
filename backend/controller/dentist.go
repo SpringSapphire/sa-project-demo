@@ -32,7 +32,6 @@ func CreateDentist(c *gin.Context) {
 		Email:     dentist.Email,
 		Birthday:  dentist.Birthday,
 		Phone:     dentist.Phone,
-		Profile:   dentist.Profile,
 	}
 	// บันทึก
 	if err := entity.DB().Create(&d).Error; err != nil {

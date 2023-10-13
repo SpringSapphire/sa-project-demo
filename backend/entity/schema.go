@@ -13,7 +13,6 @@ type Dentist struct {
 	Email     string
 	Birthday  string
 	Phone     string
-	Profile   string `gorm:"type:longtext"`
 
 	GenderID *uint
 	Gender   Gender `gorm:"reference:id"`
