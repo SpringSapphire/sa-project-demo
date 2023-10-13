@@ -53,7 +53,6 @@ const AdminCreateMember: FC = () => {
     if (res.status) {
       messageApi.open({
         type: "success",
-
         content: "บันทึกข้อมูลสำเร็จ",
       });
 
@@ -80,14 +79,6 @@ const AdminCreateMember: FC = () => {
     if (res) {
       setOccupations(res);
     }
-  };
-
-  const normFile = (e: any) => {
-    if (Array.isArray(e)) {
-      return e;
-    }
-    setProfile(e?.fileList[0]);
-    return e?.fileList;
   };
 
   useEffect(() => {

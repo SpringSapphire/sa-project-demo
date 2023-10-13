@@ -181,8 +181,8 @@ const AdminMember: FC = () => {
               rowKey="ID"
               columns={columns}
               dataSource={members}
-              pagination={{ pageSize: 4 }}
-              size="small"
+              pagination={{ pageSize: 5 }}
+              size="large"
             />
           </div>
           <Modal

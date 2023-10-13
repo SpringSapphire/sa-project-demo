@@ -18,14 +18,6 @@ const AdminDentist: FC = () => {
       key: "id",
     },
     {
-      title: "รูปประจำตัว",
-      dataIndex: "Profile",
-      key: "profile",
-      render: (text, record, index) => (
-        <img src={record.Profile} alt={record.Profile} width="30%" />
-      ),
-    },
-    {
       title: "ชื่อบัญชี",
       dataIndex: "UserName",
       key: "username",
@@ -183,8 +175,8 @@ const AdminDentist: FC = () => {
               rowKey="ID"
               columns={columns}
               dataSource={dentists}
-              pagination={{ pageSize: 4 }}
-              size="small"
+              pagination={{ pageSize: 5 }}
+              size="large"
             />
           </div>
           <Modal
