@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, useId } from "react";
+import React, { FC, useState, useEffect } from "react";
 import {
   Space,
   Button,
@@ -9,7 +9,6 @@ import {
   Input,
   Card,
   message,
-  Upload,
   Select,
   DatePicker,
 } from "antd";
@@ -17,12 +16,11 @@ import type { DatePickerProps } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { MemberInterface } from "../../interfaces/IMember";
 import { GenderInterface } from "../../interfaces/IGender";
-import { OccupationInterface } from "../../interfaces/IOcc";
 import {
   GetGenders,
   GetMemberByUsername,
 } from "../../services/https/https";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import dayjs from "dayjs";
 
 const { Option } = Select;
@@ -51,7 +49,7 @@ const MemberProfile: FC = () => {
   const [form] = Form.useForm();
 
   const onClick = async () => {
-    navigate(`/member/profile/edit/${member?.ID}`);
+    navigate(`/member/profile/edit/${member?.Username}`);
   };
 
   const [Disabled] = useState<boolean>(true);
@@ -69,13 +67,13 @@ const MemberProfile: FC = () => {
       setMember(res);
       // set form ข้อมูลเริ่มของผู่้ใช้ที่เราแก้ไข
       form.setFieldsValue({
-        UserName: res.UserName,
-        PassWord: res.PassWord,
-        FirstName: res.FirstName,
-        LastName: res.LastName,
+        Username: res.Username,
+        Password: res.Password,
+        Firstname: res.Firstname,
+        Lastname: res.Lastname,
         GenderID: res.GenderID,
         Email: res.Email,
-        Phone: res.Phone,
+        Phone_number: res.Phone_number,
         Birthday: dayjs(res.Birthday),
         Occpation: res.Occpation,
       });
@@ -85,7 +83,7 @@ const MemberProfile: FC = () => {
   useEffect(() => {
     getGender();
     getMemberById();
-  }, []);
+  }, );
 
   return (
     <div>
@@ -108,7 +106,7 @@ const MemberProfile: FC = () => {
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="Username"
-                      name="UserName"
+                      name="Username"
                       rules={[
                         {
                           required: true,
@@ -123,7 +121,7 @@ const MemberProfile: FC = () => {
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="Password"
-                      name="PassWord"
+                      name="Password"
                       rules={[
                         {
                           required: true,
@@ -139,7 +137,7 @@ const MemberProfile: FC = () => {
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="ชื่อจริง"
-                      name="FirstName"
+                      name="Firstname"
                       rules={[
                         {
                           required: true,
@@ -154,7 +152,7 @@ const MemberProfile: FC = () => {
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="นามกสุล"
-                      name="LastName"
+                      name="Lastname"
                       rules={[
                         {
                           required: true,
@@ -189,7 +187,7 @@ const MemberProfile: FC = () => {
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="เบอร์โทรศัพท์"
-                      name="Phone"
+                      name="Phone_number"
                       rules={[
                         {
                           required: true,
@@ -210,8 +208,8 @@ const MemberProfile: FC = () => {
                     >
                       <Select allowClear onChange={handleChange}>
                         {genders.map((item) => (
-                          <Option value={item.ID} key={item.GenderName}>
-                            {item.GenderName}
+                          <Option value={item.ID} key={item.Gender_name}>
+                            {item.Gender_name}
                           </Option>
                         ))}
                       </Select>

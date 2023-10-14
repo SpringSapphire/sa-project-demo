@@ -6,13 +6,13 @@ import (
 
 type Dentist struct {
 	gorm.Model
-	UserName  string `gorm:"unique:uniqueIndex"`
-	PassWord  string `gorm:"unique:uniqueIndex"`
-	FirstName string
-	LastName  string
-	Email     string
-	Birthday  string
-	Phone     string
+	Username     string `gorm:"unique:uniqueIndex"`
+	Password     string `gorm:"unique:uniqueIndex"`
+	Firstname    string
+	Lastname     string
+	Email        string
+	Bod          string
+	Phone_number string
 
 	GenderID *uint
 	Gender   Gender `gorm:"reference:id"`
@@ -20,21 +20,20 @@ type Dentist struct {
 
 type Gender struct {
 	gorm.Model
-	GenderName string    `gorm:"unique:uniqueIndex"`
-	Member     []Member  `gorm:"foreignkey:GenderID"`
-	Dentist    []Dentist `gorm:"foreignkey:GenderID"`
+	Gender_name string    `gorm:"unique:uniqueIndex"`
+	Member      []Member  `gorm:"foreignkey:GenderID"`
+	Dentist     []Dentist `gorm:"foreignkey:GenderID"`
 }
 
 type Member struct {
 	gorm.Model
-	UserName  string `gorm:"unique:uniqueIndex"`
-	PassWord  string `gorm:"unique:uniqueIndex"`
-	FirstName string
-	LastName  string
-	Email     string
-	Birthday  string
-	Phone     string
-	Profile   string `gorm:"type:longtext"`
+	Username     string `gorm:"unique:uniqueIndex"`
+	Password     string `gorm:"unique:uniqueIndex"`
+	Firstname    string
+	Lastname     string
+	Email        string
+	Bod          string
+	Phone_number string
 
 	GenderID     *uint
 	Gender       Gender `gorm:"reference:id"`
@@ -44,6 +43,6 @@ type Member struct {
 
 type Occupation struct {
 	gorm.Model
-	OccupationName string   `gorm:"unique:uniqueIndex"`
-	Member         []Member `gorm:"foreignkey:OccupationID"`
+	Name   string   `gorm:"unique:uniqueIndex"`
+	Member []Member `gorm:"foreignkey:OccupationID"`
 }

@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, useId } from "react";
+import React, { FC, useState, useEffect } from "react";
 import {
   Space,
   Button,
@@ -26,7 +26,6 @@ import {
 } from "../../../../services/https/https";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import dayjs from "dayjs";
-import { ImageUpload } from "../../../../interfaces/IUpload";
 
 const { Option } = Select;
 
@@ -47,7 +46,6 @@ const AdminEditMemberProfile: FC = () => {
   const [member, setMember] = useState<MemberInterface>();
   const [genders, setGenders] = useState<GenderInterface[]>([]);
   const [occupations, setOccupation] = useState<OccupationInterface[]>([]);
-  const [profile, setProfile] = useState<ImageUpload>();
 
   // รับข้อมูลจาก params
   let { username } = useParams();
@@ -56,7 +54,6 @@ const AdminEditMemberProfile: FC = () => {
 
   const onFinish = async (values: MemberInterface) => {
     values.ID = member?.ID;
-    values.Profile = profile?.thumbUrl;
     let res = await UpdateMember(values);
     if (res.status) {
       messageApi.open({
@@ -94,13 +91,13 @@ const AdminEditMemberProfile: FC = () => {
       setMember(res);
       // set form ข้อมูลเริ่มของผู่้ใช้ที่เราแก้ไข
       form.setFieldsValue({
-        UserName: res.UserName,
-        PassWord: res.PassWord,
-        FirstName: res.FirstName,
-        LastName: res.LastName,
+        Username: res.Username,
+        Password: res.Password,
+        Firstname: res.Firstname,
+        Lastname: res.Lastname,
         GenderID: res.GenderID,
         Email: res.Email,
-        Phone: res.Phone,
+        Phone_number: res.Phone_number,
         Birthday: dayjs(res.Birthday),
         OccupationID: res.OccupationID,
       });
@@ -135,7 +132,7 @@ const AdminEditMemberProfile: FC = () => {
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="Username"
-                      name="UserName"
+                      name="Username"
                       rules={[
                         {
                           required: true,
@@ -150,7 +147,7 @@ const AdminEditMemberProfile: FC = () => {
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="Password"
-                      name="PassWord"
+                      name="Password"
                       rules={[
                         {
                           required: true,
@@ -166,7 +163,7 @@ const AdminEditMemberProfile: FC = () => {
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="ชื่อจริง"
-                      name="FirstName"
+                      name="Firstname"
                       rules={[
                         {
                           required: true,
@@ -181,7 +178,7 @@ const AdminEditMemberProfile: FC = () => {
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="นามกสุล"
-                      name="LastName"
+                      name="Lastname"
                       rules={[
                         {
                           required: true,
@@ -216,7 +213,7 @@ const AdminEditMemberProfile: FC = () => {
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="เบอร์โทรศัพท์"
-                      name="Phone"
+                      name="Phone_number"
                       rules={[
                         {
                           required: true,
@@ -237,8 +234,8 @@ const AdminEditMemberProfile: FC = () => {
                     >
                       <Select allowClear onChange={handleChange}>
                         {genders.map((item) => (
-                          <Option value={item.ID} key={item.GenderName}>
-                            {item.GenderName}
+                          <Option value={item.ID} key={item.Gender_name}>
+                            {item.Gender_name}
                           </Option>
                         ))}
                       </Select>
@@ -273,8 +270,8 @@ const AdminEditMemberProfile: FC = () => {
                     >
                       <Select allowClear onChange={handleChange}>
                         {occupations.map((item) => (
-                          <Option value={item.ID} key={item.OccupationName}>
-                            {item.OccupationName}
+                          <Option value={item.ID} key={item.Name}>
+                            {item.Name}
                           </Option>
                         ))}
                       </Select>

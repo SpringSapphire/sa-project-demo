@@ -81,13 +81,13 @@ const DentistEditProfile: FC = () => {
       setDentist(res);
       // set form ข้อมูลเริ่มของผู่้ใช้ที่เราแก้ไข
       form.setFieldsValue({
-        UserName: res.UserName,
-        PassWord: res.PassWord,
-        FirstName: res.FirstName,
-        LastName: res.LastName,
+        Username: res.Username,
+        Password: res.Password,
+        Firstname: res.Firstname,
+        Lastname: res.Lastname,
         GenderID: res.GenderID,
         Email: res.Email,
-        Phone: res.Phone,
+        Phone_number: res.Phone_number,
         Birthday: dayjs(res.Birthday),
       });
     }
@@ -119,7 +119,7 @@ const DentistEditProfile: FC = () => {
                   <Col xs={24} sm={24} md={24} lg={24} xl={10}>
                     <Form.Item
                       label="Username"
-                      name="UserName"
+                      name="Username"
                       rules={[
                         {
                           required: true,
@@ -134,7 +134,7 @@ const DentistEditProfile: FC = () => {
                   <Col xs={24} sm={24} md={24} lg={24} xl={10}>
                     <Form.Item
                       label="Password"
-                      name="PassWord"
+                      name="Password"
                       rules={[
                         {
                           required: true,
@@ -150,7 +150,7 @@ const DentistEditProfile: FC = () => {
                   <Col xs={24} sm={24} md={24} lg={24} xl={10}>
                     <Form.Item
                       label="ชื่อจริง"
-                      name="FirstName"
+                      name="Firstname"
                       rules={[
                         {
                           required: true,
@@ -165,7 +165,7 @@ const DentistEditProfile: FC = () => {
                   <Col xs={24} sm={24} md={24} lg={24} xl={10}>
                     <Form.Item
                       label="นามกสุล"
-                      name="LastName"
+                      name="Lastname"
                       rules={[
                         {
                           required: true,
@@ -200,7 +200,7 @@ const DentistEditProfile: FC = () => {
                   <Col xs={24} sm={24} md={24} lg={24} xl={10}>
                     <Form.Item
                       label="เบอร์โทรศัพท์"
-                      name="Phone"
+                      name="Phone_number"
                       rules={[
                         {
                           required: true,
@@ -221,8 +221,8 @@ const DentistEditProfile: FC = () => {
                     >
                       <Select allowClear onChange={handleChange}>
                         {genders.map((item) => (
-                          <Option value={item.ID} key={item.GenderName}>
-                            {item.GenderName}
+                          <Option value={item.ID} key={item.Gender_name}>
+                            {item.Gender_name}
                           </Option>
                         ))}
                       </Select>

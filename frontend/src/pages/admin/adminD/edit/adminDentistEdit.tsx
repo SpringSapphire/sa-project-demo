@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, useId } from "react";
+import React, { FC, useState, useEffect } from "react";
 import {
   Space,
   Button,
@@ -9,7 +9,6 @@ import {
   Input,
   Card,
   message,
-  Upload,
   Select,
   DatePicker,
 } from "antd";
@@ -17,7 +16,6 @@ import type { DatePickerProps } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { DentistInterface } from "../../../../interfaces/IDentist";
 import { GenderInterface } from "../../../../interfaces/IGender";
-import { ImageUpload } from "../../../../interfaces/IUpload";
 import {
   GetGenders,
   GetDentistByUsername,
@@ -41,7 +39,6 @@ const onDateChange: DatePickerProps["onChange"] = (date, dateString) => {
 const AdminEditDentistProfile: FC = () => {
   const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
-  const [profile, setProfile] = useState<ImageUpload>();
   const [dentsit, setDentist] = useState<DentistInterface>();
   const [genders, setGenders] = useState<GenderInterface[]>([]);
 
@@ -52,7 +49,6 @@ const AdminEditDentistProfile: FC = () => {
 
   const onFinish = async (values: DentistInterface) => {
     values.ID = dentsit?.ID;
-    values.Profile = profile?.thumbUrl;
     let res = await UpdateDentist(values);
     if (res.status) {
       messageApi.open({
@@ -77,19 +73,19 @@ const AdminEditDentistProfile: FC = () => {
     }
   };
 
-  const getDentistByUserName = async () => {
+  const getDentistByUsername = async () => {
     let res = await GetDentistByUsername(username);
     if (res) {
       setDentist(res);
       // set form ข้อมูลเริ่มของผู่้ใช้ที่เราแก้ไข
       form.setFieldsValue({
-        UserName: res.UserName,
-        PassWord: res.PassWord,
-        FirstName: res.FirstName,
-        LastName: res.LastName,
+        Username: res.Username,
+        Password: res.Password,
+        Firstname: res.Firstname,
+        Lastname: res.Lastname,
         GenderID: res.GenderID,
         Email: res.Email,
-        Phone: res.Phone,
+        Phone_number: res.Phone_number,
         Birthday: dayjs(res.Birthday),
       });
     }
@@ -97,7 +93,7 @@ const AdminEditDentistProfile: FC = () => {
 
   useEffect(() => {
     getGender();
-    getDentistByUserName();
+    getDentistByUsername();
   }, []);
 
   return (
@@ -114,15 +110,14 @@ const AdminEditDentistProfile: FC = () => {
           <h2> แก้ไขข้อมูลส่วนตัว </h2>
           <Divider />
           <Row gutter={[16, 16]}>
-            <Col xs={24} sm={24} md={24} lg={24} xl={8}>
-            </Col>
+            <Col xs={24} sm={24} md={24} lg={24} xl={8}></Col>
             <Col xs={24} sm={24} md={24} lg={24} xl={16}>
               <Card>
                 <Row gutter={[16, 16]}>
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="Username"
-                      name="UserName"
+                      name="Username"
                       rules={[
                         {
                           required: true,
@@ -137,7 +132,7 @@ const AdminEditDentistProfile: FC = () => {
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="Password"
-                      name="PassWord"
+                      name="Password"
                       rules={[
                         {
                           required: true,
@@ -153,7 +148,7 @@ const AdminEditDentistProfile: FC = () => {
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="ชื่อจริง"
-                      name="FirstName"
+                      name="Firstname"
                       rules={[
                         {
                           required: true,
@@ -168,7 +163,7 @@ const AdminEditDentistProfile: FC = () => {
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="นามกสุล"
-                      name="LastName"
+                      name="Lastname"
                       rules={[
                         {
                           required: true,
@@ -203,7 +198,7 @@ const AdminEditDentistProfile: FC = () => {
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="เบอร์โทรศัพท์"
-                      name="Phone"
+                      name="Phone_number"
                       rules={[
                         {
                           required: true,
@@ -224,8 +219,8 @@ const AdminEditDentistProfile: FC = () => {
                     >
                       <Select allowClear onChange={handleChange}>
                         {genders.map((item) => (
-                          <Option value={item.ID} key={item.GenderName}>
-                            {item.GenderName}
+                          <Option value={item.ID} key={item.Gender_name}>
+                            {item.Gender_name}
                           </Option>
                         ))}
                       </Select>

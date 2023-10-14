@@ -28,37 +28,37 @@ func SetupDatabase() {
 
 	// Gender Data
 	male := Gender{
-		GenderName: "ชาย",
+		Gender_name: "ชาย",
 	}
 	db.Model(&Gender{}).Create(&male)
 
 	female := Gender{
-		GenderName: "หญิง",
+		Gender_name: "หญิง",
 	}
 	db.Model(&Gender{}).Create(&female)
 
 	student := Occupation{
-		OccupationName: "นักเรียน",
+		Name: "นักเรียน",
 	}
 	db.Model(&Occupation{}).Create(&student)
 
 	teacher := Occupation{
-		OccupationName: "ครู",
+		Name: "ครู",
 	}
 	db.Model(&Occupation{}).Create(&teacher)
 
 	worker := Occupation{
-		OccupationName: "คนงาน",
+		Name: "คนงาน",
 	}
 	db.Model(&Occupation{}).Create(&worker)
 
 	gardener := Occupation{
-		OccupationName: "คนสวน",
+		Name: "คนสวน",
 	}
 	db.Model(&Occupation{}).Create(&gardener)
 
 	freelancer := Occupation{
-		OccupationName: "ฟรีแลนซ์",
+		Name: "ฟรีแลนซ์",
 	}
 	db.Model(&Occupation{}).Create(&freelancer)
 }

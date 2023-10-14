@@ -19,22 +19,22 @@ const AdminMember: FC = () => {
     },
     {
       title: "ชื่อบัญชี",
-      dataIndex: "UserName",
+      dataIndex: "Username",
       key: "username",
     },
     {
       title: "รหัสผ่าน",
-      dataIndex: "PassWord",
+      dataIndex: "Password",
       key: "password",
     },
     {
       title: "ชื่อ",
-      dataIndex: "FirstName",
+      dataIndex: "Firstname",
       key: "firstname",
     },
     {
       title: "นามสกุล",
-      dataIndex: "LastName",
+      dataIndex: "Lastname",
       key: "lastname",
     },
     {
@@ -46,7 +46,7 @@ const AdminMember: FC = () => {
       title: "เพศ",
       dataIndex: "Gender",
       key: "gender",
-      render: (text, item, index) => item.Gender?.GenderName,
+      render: (text, item, index) => item.Gender?.Gender_name,
     },
     {
       title: "วันเกิด",
@@ -56,14 +56,14 @@ const AdminMember: FC = () => {
     },
     {
       title: "เบอร์โทรศัพท์",
-      dataIndex: "Phone",
+      dataIndex: "Phone_number",
       key: "phone",
     },
     {
       title: "อาชีพ",
       dataIndex: "Occupation",
       key: "occupation",
-      render: (text, item, index) => item.Occupation?.OccupationName,
+      render: (text, item, index) => item.Occupation?.Name,
     },
     {
       title: "จัดการ",
@@ -72,7 +72,7 @@ const AdminMember: FC = () => {
       render: (text, record, index) => (
         <>
           <Button
-            onClick={() => navigate(`/admin/member/edit/${record.UserName}`)}
+            onClick={() => navigate(`/admin/member/edit/${record.Username}`)}
             shape="circle"
             icon={<EditOutlined />}
             size={"large"}
@@ -112,9 +112,9 @@ const AdminMember: FC = () => {
 
   const showModal = (val: MemberInterface) => {
     setModalText(
-      `คุณต้องการลบข้อมูลผู้ใช้ "${val.FirstName} ${val.LastName}" หรือไม่ ?`
+      `คุณต้องการลบข้อมูลผู้ใช้ "${val.Firstname} ${val.Lastname}" หรือไม่ ?`
     );
-    setDeleteUsername(val.UserName);
+    setDeleteUsername(val.Username);
     setOpen(true);
   };
 

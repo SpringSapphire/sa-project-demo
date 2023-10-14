@@ -25,13 +25,13 @@ func CreateDentist(c *gin.Context) {
 	//สร้าง dentist
 	d := entity.Dentist{
 		Gender:    gender,
-		UserName:  dentist.UserName,
-		PassWord:  dentist.PassWord,
-		FirstName: dentist.FirstName,
-		LastName:  dentist.LastName,
+		Username:  dentist.Username,
+		Password:  dentist.Password,
+		Firstname: dentist.Firstname,
+		Lastname:  dentist.Lastname,
 		Email:     dentist.Email,
-		Birthday:  dentist.Birthday,
-		Phone:     dentist.Phone,
+		Bod:       dentist.Bod,
+		Phone_number:     dentist.Phone_number,
 	}
 	// บันทึก
 	if err := entity.DB().Create(&d).Error; err != nil {
@@ -45,7 +45,7 @@ func CreateDentist(c *gin.Context) {
 func GetDentist(c *gin.Context) {
 	var dentist entity.Dentist
 	username := c.Param("username")
-	if err := entity.DB().Preload("Gender").Raw("SELECT * FROM dentists WHERE user_name = ?", username).Find(&dentist).Error; err != nil {
+	if err := entity.DB().Preload("Gender").Raw("SELECT * FROM dentists WHERE username = ?", username).Find(&dentist).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -65,7 +65,7 @@ func ListDentists(c *gin.Context) {
 // DELETE /dentists/:id
 func DeleteDentist(c *gin.Context) {
 	username := c.Param("username")
-	if tx := entity.DB().Exec("DELETE FROM dentists WHERE user_name = ?", username); tx.RowsAffected == 0 {
+	if tx := entity.DB().Exec("DELETE FROM dentists WHERE username = ?", username); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "dentist not found"})
 		return
 	}
@@ -82,7 +82,7 @@ func UpdateDentist(c *gin.Context) {
 		return
 	}
 	// ค้นหา dentist ด้วย username
-	if tx := entity.DB().Where("user_name = ?", dentist.UserName).First(&result); tx.RowsAffected == 0 {
+	if tx := entity.DB().Where("username = ?", dentist.Username).First(&result); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "user not found"})
 		return
 	}

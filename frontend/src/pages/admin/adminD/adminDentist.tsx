@@ -19,22 +19,22 @@ const AdminDentist: FC = () => {
     },
     {
       title: "ชื่อบัญชี",
-      dataIndex: "UserName",
+      dataIndex: "Username",
       key: "username",
     },
     {
       title: "รหัสผ่าน",
-      dataIndex: "PassWord",
+      dataIndex: "Password",
       key: "password",
     },
     {
       title: "ชื่อ",
-      dataIndex: "FirstName",
+      dataIndex: "Firstname",
       key: "firstname",
     },
     {
       title: "นามสกุล",
-      dataIndex: "LastName",
+      dataIndex: "Lastname",
       key: "lastname",
     },
     {
@@ -46,7 +46,7 @@ const AdminDentist: FC = () => {
       title: "เพศ",
       dataIndex: "Gender",
       key: "gender",
-      render: (text, item, index) => item.Gender?.GenderName,
+      render: (text, item, index) => item.Gender?.Gender_name,
     },
     {
       title: "วันเกิด",
@@ -56,7 +56,7 @@ const AdminDentist: FC = () => {
     },
     {
       title: "เบอร์โทรศัพท์",
-      dataIndex: "Phone",
+      dataIndex: "Phone_number",
       key: "phone",
     },
     {
@@ -66,7 +66,7 @@ const AdminDentist: FC = () => {
       render: (text, record, index) => (
         <>
           <Button
-            onClick={() => navigate(`/admin/dentist/edit/${record.UserName}`)}
+            onClick={() => navigate(`/admin/dentist/edit/${record.Username}`)}
             shape="circle"
             icon={<EditOutlined />}
             size={"large"}
@@ -106,9 +106,9 @@ const AdminDentist: FC = () => {
 
   const showModal = (val: DentistInterface) => {
     setModalText(
-      `คุณต้องการลบข้อมูลผู้ใช้ "${val.FirstName} ${val.LastName}" หรือไม่ ?`
+      `คุณต้องการลบข้อมูลผู้ใช้ "${val.Firstname} ${val.Lastname}" หรือไม่ ?`
     );
-    setDeleteUsername(val.UserName);
+    setDeleteUsername(val.Username);
     setOpen(true);
   };
 

@@ -2,7 +2,6 @@ import React, { FC, useState, useEffect } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import { DentistInterface } from "../../../../interfaces/IDentist";
 import { GenderInterface } from "../../../../interfaces/IGender";
-import { ImageUpload } from "../../../../interfaces/IUpload";
 import { CreateDentist, GetGenders } from "../../../../services/https/https";
 import { useNavigate, Link } from "react-router-dom";
 import dayjs from "dayjs";
@@ -18,7 +17,6 @@ import {
   Card,
   message,
   Select,
-  Upload,
   DatePicker,
 } from "antd";
 const { Option } = Select;
@@ -38,11 +36,9 @@ const AdminCreateDentist: FC = () => {
 
   const navigate = useNavigate();
   const [genders, setGenders] = useState<GenderInterface[]>([]);
-  const [profile, setProfile] = useState<ImageUpload>();
   const [messageApi, contextHolder] = message.useMessage();
 
   const onFinish = async (values: DentistInterface) => {
-    values.Profile = profile?.thumbUrl;
     let res = await CreateDentist(values);
     if (res.status) {
       messageApi.open({
@@ -86,8 +82,7 @@ const AdminCreateDentist: FC = () => {
           <h2> เพิ่มข้อมูลทันตแพทย์</h2>
           <Divider />
           <Row gutter={[16, 16]}>
-            <Col xs={24} sm={24} md={24} lg={24} xl={8}>
-            </Col>
+            <Col xs={24} sm={24} md={24} lg={24} xl={8}></Col>
             <Col xs={24} sm={24} md={24} lg={24} xl={16}>
               <Card>
                 <Row gutter={[16, 16]}>
@@ -117,7 +112,7 @@ const AdminCreateDentist: FC = () => {
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="ชื่อ"
-                      name="FirstName"
+                      name="Firstname"
                       rules={[{ required: true, message: "กรุณากรอกชื่อ" }]}
                     >
                       <Input placeholder="ชื่อ" />
@@ -127,7 +122,7 @@ const AdminCreateDentist: FC = () => {
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="นามสกุล"
-                      name="LastName"
+                      name="Lastname"
                       rules={[{ required: true, message: "กรุณากรอกนามสกุล" }]}
                     >
                       <Input placeholder="นามสกุล" />
@@ -150,8 +145,8 @@ const AdminCreateDentist: FC = () => {
                   <Col xs={0} sm={2} md={2} lg={2} xl={2} />
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
-                      label="Phone Number"
-                      name="Phone"
+                      label="Phone_number Number"
+                      name="Phone_number"
                       rules={[
                         { required: true, message: "กรุณากรอกเบอร์โทรทัศพ์" },
                       ]}
@@ -169,8 +164,8 @@ const AdminCreateDentist: FC = () => {
                     >
                       <Select onChange={handleChange}>
                         {genders.map((item) => (
-                          <Option value={item.ID} key={item.GenderName}>
-                            {item.GenderName}
+                          <Option value={item.ID} key={item.Gender_name}>
+                            {item.Gender_name}
                           </Option>
                         ))}
                       </Select>

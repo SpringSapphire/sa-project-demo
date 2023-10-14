@@ -3,14 +3,13 @@ import { GenderInterface } from "./IGender";
 
 export interface MemberInterface {
     ID? : number;
-    UserName? : string;
-    PassWord? : string;
-    FirstName? : string;
-    LastName? : string;
+    Username? : string;
+    Password? : string;
+    Firstname? : string;
+    Lastname? : string;
     Email? : string;
-    Birthday? : string;
-    Phone? : string;
-    Profile?: string;
+    Bod? : string;
+    Phone_number? : string;
 
     GenderID?: number;
     Gender?: GenderInterface;

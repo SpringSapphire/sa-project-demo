@@ -3,7 +3,6 @@ import { PlusOutlined } from "@ant-design/icons";
 import { MemberInterface } from "../../../../interfaces/IMember";
 import { GenderInterface } from "../../../../interfaces/IGender";
 import { OccupationInterface } from "../../../../interfaces/IOcc";
-import { ImageUpload } from "../../../../interfaces/IUpload";
 import {
   CreateMember,
   GetGenders,
@@ -23,7 +22,6 @@ import {
   Card,
   message,
   Select,
-  Upload,
   DatePicker,
 } from "antd";
 const { Option } = Select;
@@ -44,11 +42,9 @@ const AdminCreateMember: FC = () => {
   const navigate = useNavigate();
   const [genders, setGenders] = useState<GenderInterface[]>([]);
   const [occupations, setOccupations] = useState<OccupationInterface[]>([]);
-  const [profile, setProfile] = useState<ImageUpload>();
   const [messageApi, contextHolder] = message.useMessage();
 
   const onFinish = async (values: MemberInterface) => {
-    values.Profile = profile?.thumbUrl;
     let res = await CreateMember(values);
     if (res.status) {
       messageApi.open({
@@ -130,7 +126,7 @@ const AdminCreateMember: FC = () => {
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="ชื่อ"
-                      name="FirstName"
+                      name="Firstname"
                       rules={[{ required: true, message: "กรุณากรอกชื่อ" }]}
                     >
                       <Input placeholder="ชื่อ" />
@@ -140,7 +136,7 @@ const AdminCreateMember: FC = () => {
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="นามสกุล"
-                      name="LastName"
+                      name="Lastname"
                       rules={[{ required: true, message: "กรุณากรอกนามสกุล" }]}
                     >
                       <Input placeholder="นามสกุล" />
@@ -163,8 +159,8 @@ const AdminCreateMember: FC = () => {
                   <Col xs={0} sm={2} md={2} lg={2} xl={2} />
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
-                      label="Phone Number"
-                      name="Phone"
+                      label="Phone_number Number"
+                      name="Phone_number"
                       rules={[
                         { required: true, message: "กรุณากรอกเบอร์โทรทัศพ์" },
                       ]}
@@ -182,8 +178,8 @@ const AdminCreateMember: FC = () => {
                     >
                       <Select onChange={handleChange}>
                         {genders.map((item) => (
-                          <Option value={item.ID} key={item.GenderName}>
-                            {item.GenderName}
+                          <Option value={item.ID} key={item.Gender_name}>
+                            {item.Gender_name}
                           </Option>
                         ))}
                       </Select>
@@ -213,8 +209,8 @@ const AdminCreateMember: FC = () => {
                     >
                       <Select allowClear onChange={handleChange}>
                         {occupations.map((item) => (
-                          <Option value={item.ID} key={item.OccupationName}>
-                            {item.OccupationName}
+                          <Option value={item.ID} key={item.Name}>
+                            {item.Name}
                           </Option>
                         ))}
                       </Select>

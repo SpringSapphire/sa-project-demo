@@ -33,16 +33,15 @@ func CreateMember(c *gin.Context) {
 
 	//สร้าง member
 	m := entity.Member{
-		Gender:     gender,
-		Occupation: occupation,
-		UserName:   member.UserName,
-		PassWord:   member.PassWord,
-		FirstName:  member.FirstName,
-		LastName:   member.LastName,
-		Email:      member.Email,
-		Birthday:   member.Birthday,
-		Phone:      member.Phone,
-		Profile:    member.Profile,
+		Gender:       gender,
+		Occupation:   occupation,
+		Username:     member.Username,
+		Password:     member.Password,
+		Firstname:    member.Firstname,
+		Lastname:     member.Lastname,
+		Email:        member.Email,
+		Bod:          member.Bod,
+		Phone_number: member.Phone_number,
 	}
 	// บันทึก
 	if err := entity.DB().Create(&m).Error; err != nil {
@@ -56,7 +55,7 @@ func CreateMember(c *gin.Context) {
 func GetMember(c *gin.Context) {
 	var members entity.Member
 	username := c.Param("username")
-	if err := entity.DB().Preload("Gender").Preload("Occupation").Raw("SELECT * FROM members WHERE user_name = ?", username).Find(&members).Error; err != nil {
+	if err := entity.DB().Preload("Gender").Preload("Occupation").Raw("SELECT * FROM members WHERE username = ?", username).Find(&members).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -76,7 +75,7 @@ func ListMembers(c *gin.Context) {
 // DELETE /members/:username
 func DeleteMember(c *gin.Context) {
 	username := c.Param("username")
-	if tx := entity.DB().Exec("DELETE FROM members WHERE user_name = ?", username); tx.RowsAffected == 0 {
+	if tx := entity.DB().Exec("DELETE FROM members WHERE username = ?", username); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "member not found"})
 		return
 	}
@@ -93,7 +92,7 @@ func UpdateMember(c *gin.Context) {
 		return
 	}
 	// ค้นหา member ด้วย username
-	if tx := entity.DB().Where("user_name = ?", member.UserName).First(&result); tx.RowsAffected == 0 {
+	if tx := entity.DB().Where("username = ?", member.Username).First(&result); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "user not found"})
 		return
 	}
