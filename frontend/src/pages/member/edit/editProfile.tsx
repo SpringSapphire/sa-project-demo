@@ -22,7 +22,7 @@ import {
   GetMemberByUsername,
   UpdateDentist,
 } from "../../../services/https/https";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import dayjs from "dayjs";
 
 const { Option } = Select;
@@ -49,6 +49,10 @@ const MemberEditProfile: FC = () => {
   // อ้างอิง form กรอกข้อมูล
   const [form] = Form.useForm();
 
+  const onClick = async () => {
+    navigate(`/member/profile/${member?.Username}`);
+  };
+
   const onFinish = async (values: MemberInterface) => {
     values.ID = member?.ID;
     let res = await UpdateDentist(values);
@@ -58,7 +62,7 @@ const MemberEditProfile: FC = () => {
         content: "แก้ไขข้อมูลสำเร็จ",
       });
       setTimeout(function () {
-        navigate("/admin");
+        navigate(`/member/profile/${member?.Username}`);
       }, 2000);
     } else {
       messageApi.open({
@@ -253,12 +257,13 @@ const MemberEditProfile: FC = () => {
                   <Col style={{ marginTop: "40px" }}>
                     <Form.Item>
                       <Space>
-                        <Button
-                          htmlType="button"
-                          style={{ marginRight: "10px" }}
-                        >
-                          ยกเลิก
-                        </Button>
+                          <Button
+                            htmlType="button"
+                            onClick={onClick}
+                            style={{ marginRight: "10px" }}
+                          >
+                            ยกเลิก
+                          </Button>
                         <Button
                           type="primary"
                           htmlType="submit"

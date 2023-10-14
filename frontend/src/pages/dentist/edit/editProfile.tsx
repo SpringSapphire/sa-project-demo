@@ -22,7 +22,7 @@ import {
   GetDentistByUsername,
   UpdateDentist,
 } from "../../../services/https/https";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import dayjs from "dayjs";
 
 const { Option } = Select;
@@ -41,7 +41,7 @@ const DentistEditProfile: FC = () => {
   const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
 
-  const [dentsit, setDentist] = useState<DentistInterface>();
+  const [dentist, setDentist] = useState<DentistInterface>();
   const [genders, setGenders] = useState<GenderInterface[]>([]);
 
   // รับข้อมูลจาก params
@@ -49,8 +49,12 @@ const DentistEditProfile: FC = () => {
   // อ้างอิง form กรอกข้อมูล
   const [form] = Form.useForm();
 
+  const onClick = async () => {
+    navigate(`/member/profile/${dentist?.Username}`);
+  };
+
   const onFinish = async (values: DentistInterface) => {
-    values.ID = dentsit?.ID;
+    values.ID = dentist?.ID;
     let res = await UpdateDentist(values);
     if (res.status) {
       messageApi.open({
@@ -58,7 +62,7 @@ const DentistEditProfile: FC = () => {
         content: "แก้ไขข้อมูลสำเร็จ",
       });
       setTimeout(function () {
-        navigate("/admin");
+        navigate(`/member/profile/${dentist?.Username}`);
       }, 2000);
     } else {
       messageApi.open({
@@ -252,12 +256,13 @@ const DentistEditProfile: FC = () => {
                   <Col style={{ marginTop: "40px" }}>
                     <Form.Item>
                       <Space>
-                        <Button
-                          htmlType="button"
-                          style={{ marginRight: "10px" }}
-                        >
-                          ยกเลิก
-                        </Button>
+                          <Button
+                            htmlType="button"
+                            onClick={onClick}
+                            style={{ marginRight: "10px" }}
+                          >
+                            ยกเลิก
+                          </Button>
                         <Button
                           type="primary"
                           htmlType="submit"
