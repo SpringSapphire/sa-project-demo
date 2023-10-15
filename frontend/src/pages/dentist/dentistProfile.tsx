@@ -14,7 +14,7 @@ import {
   DatePicker,
 } from "antd";
 import type { DatePickerProps } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import { EditOutlined } from "@ant-design/icons";
 import { DentistInterface } from "../../interfaces/IDentist";
 import { GenderInterface } from "../../interfaces/IGender";
 import {
@@ -246,7 +246,7 @@ const DentistProfile: FC = () => {
                     <Button
                       type="primary"
                       onClick={onClick}
-                      icon={<PlusOutlined />}
+                      icon={<EditOutlined />}
                     >
                       แก้ไขข้อมูล
                     </Button>

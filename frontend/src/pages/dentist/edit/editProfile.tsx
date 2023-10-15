@@ -62,7 +62,7 @@ const DentistEditProfile: FC = () => {
         content: "แก้ไขข้อมูลสำเร็จ",
       });
       setTimeout(function () {
-        navigate(`/member/profile/${dentist?.Username}`);
+        navigate(`/dentist/profile/${dentist?.Username}`);
       }, 2000);
     } else {
       messageApi.open({
@@ -266,7 +266,6 @@ const DentistEditProfile: FC = () => {
                         <Button
                           type="primary"
                           htmlType="submit"
-                          icon={<PlusOutlined />}
                         >
                           ยืนยัน
                         </Button>
