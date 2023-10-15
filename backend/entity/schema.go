@@ -8,10 +8,10 @@ type Dentist struct {
 	gorm.Model
 	Username     string `gorm:"unique:uniqueIndex"`
 	Password     string `gorm:"unique:uniqueIndex"`
-	Firstname    string
-	Lastname     string
+	FirstName    string
+	LastName     string
 	Email        string
-	Bod          string
+	Birthday     string
 	Phone_number string
 
 	GenderID *uint
@@ -20,7 +20,7 @@ type Dentist struct {
 
 type Gender struct {
 	gorm.Model
-	Gender_name string    `gorm:"unique:uniqueIndex"`
+	Name string    `gorm:"unique:uniqueIndex"`
 	Member      []Member  `gorm:"foreignkey:GenderID"`
 	Dentist     []Dentist `gorm:"foreignkey:GenderID"`
 }
@@ -29,10 +29,10 @@ type Member struct {
 	gorm.Model
 	Username     string `gorm:"unique:uniqueIndex"`
 	Password     string `gorm:"unique:uniqueIndex"`
-	Firstname    string
-	Lastname     string
+	FirstName    string
+	LastName     string
 	Email        string
-	Bod          string
+	Birthday     string
 	Phone_number string
 
 	GenderID     *uint

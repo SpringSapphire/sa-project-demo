@@ -73,8 +73,8 @@ const DentistProfile: FC = () => {
       form.setFieldsValue({
         Username: res.Username,
         Password: res.Password,
-        Firstname: res.Firstname,
-        Lastname: res.Lastname,
+        FirstName: res.FirstName,
+        LastName: res.LastName,
         GenderID: res.GenderID,
         Email: res.Email,
         Phone_number: res.Phone_number,
@@ -140,7 +140,7 @@ const DentistProfile: FC = () => {
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="ชื่อจริง"
-                      name="Firstname"
+                      name="FirstName"
                       rules={[
                         {
                           required: true,
@@ -155,7 +155,7 @@ const DentistProfile: FC = () => {
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="นามกสุล"
-                      name="Lastname"
+                      name="LastName"
                       rules={[
                         {
                           required: true,
@@ -211,8 +211,8 @@ const DentistProfile: FC = () => {
                     >
                       <Select allowClear onChange={handleChange}>
                         {genders.map((item) => (
-                          <Option value={item.ID} key={item.Gender_name}>
-                            {item.Gender_name}
+                          <Option value={item.ID} key={item.Name}>
+                            {item.Name}
                           </Option>
                         ))}
                       </Select>

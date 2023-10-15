@@ -29,12 +29,12 @@ const AdminDentist: FC = () => {
     },
     {
       title: "ชื่อ",
-      dataIndex: "Firstname",
+      dataIndex: "FirstName",
       key: "firstname",
     },
     {
       title: "นามสกุล",
-      dataIndex: "Lastname",
+      dataIndex: "LastName",
       key: "lastname",
     },
     {
@@ -46,7 +46,7 @@ const AdminDentist: FC = () => {
       title: "เพศ",
       dataIndex: "Gender",
       key: "gender",
-      render: (text, item, index) => item.Gender?.Gender_name,
+      render: (text, item, index) => item.Gender?.Name,
     },
     {
       title: "วันเกิด",
@@ -106,7 +106,7 @@ const AdminDentist: FC = () => {
 
   const showModal = (val: DentistInterface) => {
     setModalText(
-      `คุณต้องการลบข้อมูลผู้ใช้ "${val.Firstname} ${val.Lastname}" หรือไม่ ?`
+      `คุณต้องการลบข้อมูลผู้ใช้ "${val.FirstName} ${val.LastName}" หรือไม่ ?`
     );
     setDeleteUsername(val.Username);
     setOpen(true);

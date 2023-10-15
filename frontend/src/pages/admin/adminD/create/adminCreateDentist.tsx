@@ -112,7 +112,7 @@ const AdminCreateDentist: FC = () => {
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="ชื่อ"
-                      name="Firstname"
+                      name="FirstName"
                       rules={[{ required: true, message: "กรุณากรอกชื่อ" }]}
                     >
                       <Input placeholder="ชื่อ" />
@@ -122,7 +122,7 @@ const AdminCreateDentist: FC = () => {
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="นามสกุล"
-                      name="Lastname"
+                      name="LastName"
                       rules={[{ required: true, message: "กรุณากรอกนามสกุล" }]}
                     >
                       <Input placeholder="นามสกุล" />
@@ -164,8 +164,8 @@ const AdminCreateDentist: FC = () => {
                     >
                       <Select onChange={handleChange}>
                         {genders.map((item) => (
-                          <Option value={item.ID} key={item.Gender_name}>
-                            {item.Gender_name}
+                          <Option value={item.ID} key={item.Name}>
+                            {item.Name}
                           </Option>
                         ))}
                       </Select>

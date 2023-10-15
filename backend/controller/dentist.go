@@ -24,14 +24,14 @@ func CreateDentist(c *gin.Context) {
 
 	//สร้าง dentist
 	d := entity.Dentist{
-		Gender:    gender,
-		Username:  dentist.Username,
-		Password:  dentist.Password,
-		Firstname: dentist.Firstname,
-		Lastname:  dentist.Lastname,
-		Email:     dentist.Email,
-		Bod:       dentist.Bod,
-		Phone_number:     dentist.Phone_number,
+		Gender:       gender,
+		Username:     dentist.Username,
+		Password:     dentist.Password,
+		FirstName:    dentist.FirstName,
+		LastName:     dentist.LastName,
+		Email:        dentist.Email,
+		Birthday:     dentist.Birthday,
+		Phone_number: dentist.Phone_number,
 	}
 	// บันทึก
 	if err := entity.DB().Create(&d).Error; err != nil {

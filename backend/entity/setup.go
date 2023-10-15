@@ -28,12 +28,12 @@ func SetupDatabase() {
 
 	// Gender Data
 	male := Gender{
-		Gender_name: "ชาย",
+		Name: "ชาย",
 	}
 	db.Model(&Gender{}).Create(&male)
 
 	female := Gender{
-		Gender_name: "หญิง",
+		Name: "หญิง",
 	}
 	db.Model(&Gender{}).Create(&female)
 

@@ -29,12 +29,12 @@ const AdminMember: FC = () => {
     },
     {
       title: "ชื่อ",
-      dataIndex: "Firstname",
-      key: "firstname",
+      dataIndex: "FirstName",
+      key: "firstame",
     },
     {
       title: "นามสกุล",
-      dataIndex: "Lastname",
+      dataIndex: "LastName",
       key: "lastname",
     },
     {
@@ -46,7 +46,7 @@ const AdminMember: FC = () => {
       title: "เพศ",
       dataIndex: "Gender",
       key: "gender",
-      render: (text, item, index) => item.Gender?.Gender_name,
+      render: (text, item, index) => item.Gender?.Name,
     },
     {
       title: "วันเกิด",
@@ -112,7 +112,7 @@ const AdminMember: FC = () => {
 
   const showModal = (val: MemberInterface) => {
     setModalText(
-      `คุณต้องการลบข้อมูลผู้ใช้ "${val.Firstname} ${val.Lastname}" หรือไม่ ?`
+      `คุณต้องการลบข้อมูลผู้ใช้ "${val.FirstName} ${val.LastName}" หรือไม่ ?`
     );
     setDeleteUsername(val.Username);
     setOpen(true);

@@ -5,10 +5,10 @@ export interface MemberInterface {
     ID? : number;
     Username? : string;
     Password? : string;
-    Firstname? : string;
-    Lastname? : string;
+    FirstName? : string;
+    LastName? : string;
     Email? : string;
-    Bod? : string;
+    Birthday? : string;
     Phone_number? : string;
 
     GenderID?: number;

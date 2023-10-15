@@ -37,10 +37,10 @@ func CreateMember(c *gin.Context) {
 		Occupation:   occupation,
 		Username:     member.Username,
 		Password:     member.Password,
-		Firstname:    member.Firstname,
-		Lastname:     member.Lastname,
+		FirstName:    member.FirstName,
+		LastName:     member.LastName,
 		Email:        member.Email,
-		Bod:          member.Bod,
+		Birthday:     member.Birthday,
 		Phone_number: member.Phone_number,
 	}
 	// บันทึก

@@ -79,7 +79,7 @@ const DentistEditProfile: FC = () => {
     }
   };
 
-  const getDentistById = async () => {
+  const getDentistByUsername = async () => {
     let res = await GetDentistByUsername(username);
     if (res) {
       setDentist(res);
@@ -87,8 +87,8 @@ const DentistEditProfile: FC = () => {
       form.setFieldsValue({
         Username: res.Username,
         Password: res.Password,
-        Firstname: res.Firstname,
-        Lastname: res.Lastname,
+        FirstName: res.FirstName,
+        LastName: res.LastName,
         GenderID: res.GenderID,
         Email: res.Email,
         Phone_number: res.Phone_number,
@@ -99,7 +99,7 @@ const DentistEditProfile: FC = () => {
 
   useEffect(() => {
     getGender();
-    getDentistById();
+    getDentistByUsername();
   }, []);
 
   return (
@@ -154,7 +154,7 @@ const DentistEditProfile: FC = () => {
                   <Col xs={24} sm={24} md={24} lg={24} xl={10}>
                     <Form.Item
                       label="ชื่อจริง"
-                      name="Firstname"
+                      name="FirstName"
                       rules={[
                         {
                           required: true,
@@ -169,7 +169,7 @@ const DentistEditProfile: FC = () => {
                   <Col xs={24} sm={24} md={24} lg={24} xl={10}>
                     <Form.Item
                       label="นามกสุล"
-                      name="Lastname"
+                      name="LastName"
                       rules={[
                         {
                           required: true,
@@ -225,8 +225,8 @@ const DentistEditProfile: FC = () => {
                     >
                       <Select allowClear onChange={handleChange}>
                         {genders.map((item) => (
-                          <Option value={item.ID} key={item.Gender_name}>
-                            {item.Gender_name}
+                          <Option value={item.ID} key={item.Name}>
+                            {item.Name}
                           </Option>
                         ))}
                       </Select>
