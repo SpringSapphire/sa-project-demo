@@ -21,9 +21,11 @@ import {
   GetGenders,
   GetMemberByUsername,
   UpdateMember,
+  GetOccupations,
 } from "../../../services/https/https";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import dayjs from "dayjs";
+import { OccupationInterface } from "../../../interfaces/IOcc";
 
 const { Option } = Select;
 
@@ -43,6 +45,8 @@ const MemberEditProfile: FC = () => {
 
   const [member, setMember] = useState<MemberInterface>();
   const [genders, setGenders] = useState<GenderInterface[]>([]);
+  const [occupations, setOccupation] = useState<OccupationInterface[]>([]);
+
 
   // รับข้อมูลจาก params
   let { username } = useParams();
@@ -56,6 +60,7 @@ const MemberEditProfile: FC = () => {
   const onFinish = async (values: MemberInterface) => {
     values.ID = member?.ID;
     let res = await UpdateMember(values);
+    console.log(values);
     if (res.status) {
       messageApi.open({
         type: "success",
@@ -79,6 +84,13 @@ const MemberEditProfile: FC = () => {
     }
   };
 
+  const getOccupation = async () => {
+    let res = await GetOccupations();
+    if (res) {
+      setOccupation(res);
+    }
+  };
+
   const getMemberByUsername = async () => {
     let res = await GetMemberByUsername(username);
     if (res) {
@@ -93,7 +105,7 @@ const MemberEditProfile: FC = () => {
         Email: res.Email,
         Phone_number: res.Phone_number,
         Birthday: dayjs(res.Birthday),
-        Occpation: res.Occpation,
+        OccupationID: res.OccupationID,
       });
     }
   };
@@ -101,6 +113,7 @@ const MemberEditProfile: FC = () => {
   useEffect(() => {
     getGender();
     getMemberByUsername();
+    getOccupation();
   }, );
 
   return (
@@ -250,6 +263,23 @@ const MemberEditProfile: FC = () => {
                         defaultValue={dayjs("01/01/2000", dateFormat)}
                         format={dateFormat}
                       />
+                    </Form.Item>
+                  </Col>
+                </Row>
+                <Row gutter={[16, 16]}>
+                  <Col xs={24} sm={10} md={10} lg={10} xl={10}>
+                    <Form.Item
+                      name="OccupationID"
+                      label="อาชีพ"
+                      rules={[{ required: true, message: "กรุณาอาชีพ !" }]}
+                    >
+                      <Select  disabled allowClear onChange={handleChange}>
+                        {occupations.map((item) => (
+                          <Option value={item.ID} key={item.Name}>
+                            {item.Name}
+                          </Option>
+                        ))}
+                      </Select>
                     </Form.Item>
                   </Col>
                 </Row>

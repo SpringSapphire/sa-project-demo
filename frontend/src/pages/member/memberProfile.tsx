@@ -19,9 +19,11 @@ import { GenderInterface } from "../../interfaces/IGender";
 import {
   GetGenders,
   GetMemberByUsername,
+  GetOccupations,
 } from "../../services/https/https";
 import { useNavigate, useParams } from "react-router-dom";
 import dayjs from "dayjs";
+import { OccupationInterface } from "../../interfaces/IOcc";
 
 const { Option } = Select;
 
@@ -41,6 +43,7 @@ const MemberProfile: FC = () => {
 
   const [member, setMember] = useState<MemberInterface>();
   const [genders, setGenders] = useState<GenderInterface[]>([]);
+  const [occupations, setOccupation] = useState<OccupationInterface[]>([]);
 
   // รับข้อมูลจาก params ที่ได้จากหน้า login
   let { username } = useParams();
@@ -61,7 +64,14 @@ const MemberProfile: FC = () => {
     }
   };
 
-  const getMemberById = async () => {
+  const getOccupation = async () => {
+    let res = await GetOccupations();
+    if (res) {
+      setOccupation(res);
+    }
+  };
+
+  const getMemberByUsername = async () => {
     let res = await GetMemberByUsername(username);
     if (res) {
       setMember(res);
@@ -75,14 +85,15 @@ const MemberProfile: FC = () => {
         Email: res.Email,
         Phone_number: res.Phone_number,
         Birthday: dayjs(res.Birthday),
-        Occpation: res.Occpation,
+        OccupationID: res.OccupationID,
       });
     }
   };
 
   useEffect(() => {
     getGender();
-    getMemberById();
+    getMemberByUsername();
+    getOccupation();
   }, );
 
   return (
@@ -117,7 +128,7 @@ const MemberProfile: FC = () => {
                       <Input />
                     </Form.Item>
                   </Col>
-                  <Col xs={0} sm={2} md={2} lg={2} xl={2} />
+                  <Col xs={0} sm={0} md={0} lg={0} xl={2} />
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="Password"
@@ -148,7 +159,7 @@ const MemberProfile: FC = () => {
                       <Input />
                     </Form.Item>
                   </Col>
-                  <Col xs={0} sm={2} md={2} lg={2} xl={2} />
+                  <Col xs={0} sm={0} md={0} lg={0} xl={2} />
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="นามกสุล"
@@ -183,7 +194,7 @@ const MemberProfile: FC = () => {
                       <Input />
                     </Form.Item>
                   </Col>
-                  <Col xs={0} sm={2} md={2} lg={2} xl={2} />
+                  <Col xs={0} sm={0} md={0} lg={0} xl={2} />
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="เบอร์โทรศัพท์"
@@ -215,7 +226,7 @@ const MemberProfile: FC = () => {
                       </Select>
                     </Form.Item>
                   </Col>
-                  <Col xs={0} sm={2} md={2} lg={2} xl={2} />
+                  <Col xs={0} sm={0} md={0} lg={0} xl={2} />
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="วันเกิด"
@@ -232,6 +243,23 @@ const MemberProfile: FC = () => {
                         defaultValue={dayjs("01/01/2000", dateFormat)}
                         format={dateFormat}
                       />
+                    </Form.Item>
+                  </Col>
+                </Row>
+                <Row gutter={[16, 16]}>
+                  <Col xs={24} sm={10} md={10} lg={10} xl={10}>
+                    <Form.Item
+                      name="OccupationID"
+                      label="อาชีพ"
+                      rules={[{ required: true, message: "กรุณาอาชีพ !" }]}
+                    >
+                      <Select allowClear onChange={handleChange}>
+                        {occupations.map((item) => (
+                          <Option value={item.ID} key={item.Name}>
+                            {item.Name}
+                          </Option>
+                        ))}
+                      </Select>
                     </Form.Item>
                   </Col>
                 </Row>

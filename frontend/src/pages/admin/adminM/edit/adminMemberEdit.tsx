@@ -71,7 +71,7 @@ const AdminEditMemberProfile: FC = () => {
     }
   };
 
-  const getOcccupation = async () => {
+  const getOccupation = async () => {
     let res = await GetOccupations();
     if (res) {
       setOccupation(res);
@@ -107,7 +107,7 @@ const AdminEditMemberProfile: FC = () => {
   useEffect(() => {
     getGender();
     getMemberByUsername();
-    getOcccupation();
+    getOccupation();
   }, []);
 
   return (
