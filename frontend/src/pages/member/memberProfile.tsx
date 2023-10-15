@@ -13,7 +13,7 @@ import {
   DatePicker,
 } from "antd";
 import type { DatePickerProps } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import { EditOutlined } from "@ant-design/icons";
 import { MemberInterface } from "../../interfaces/IMember";
 import { GenderInterface } from "../../interfaces/IGender";
 import {
@@ -117,7 +117,7 @@ const MemberProfile: FC = () => {
                       <Input />
                     </Form.Item>
                   </Col>
-                  <Col xs={0} sm={0} md={0} lg={0} xl={2} />
+                  <Col xs={0} sm={2} md={2} lg={2} xl={2} />
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="Password"
@@ -148,7 +148,7 @@ const MemberProfile: FC = () => {
                       <Input />
                     </Form.Item>
                   </Col>
-                  <Col xs={0} sm={0} md={0} lg={0} xl={2} />
+                  <Col xs={0} sm={2} md={2} lg={2} xl={2} />
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="นามกสุล"
@@ -183,7 +183,7 @@ const MemberProfile: FC = () => {
                       <Input />
                     </Form.Item>
                   </Col>
-                  <Col xs={0} sm={0} md={0} lg={0} xl={2} />
+                  <Col xs={0} sm={2} md={2} lg={2} xl={2} />
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="เบอร์โทรศัพท์"
@@ -215,7 +215,7 @@ const MemberProfile: FC = () => {
                       </Select>
                     </Form.Item>
                   </Col>
-                  <Col xs={0} sm={0} md={0} lg={0} xl={2} />
+                  <Col xs={0} sm={2} md={2} lg={2} xl={2} />
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="วันเกิด"
@@ -243,7 +243,7 @@ const MemberProfile: FC = () => {
                     <Button
                       type="primary"
                       onClick={onClick}
-                      icon={<PlusOutlined />}
+                      icon={<EditOutlined />}
                     >
                       แก้ไขข้อมูล
                     </Button>

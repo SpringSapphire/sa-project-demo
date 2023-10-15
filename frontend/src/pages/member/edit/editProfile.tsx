@@ -20,7 +20,7 @@ import { GenderInterface } from "../../../interfaces/IGender";
 import {
   GetGenders,
   GetMemberByUsername,
-  UpdateDentist,
+  UpdateMember,
 } from "../../../services/https/https";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import dayjs from "dayjs";
@@ -55,7 +55,7 @@ const MemberEditProfile: FC = () => {
 
   const onFinish = async (values: MemberInterface) => {
     values.ID = member?.ID;
-    let res = await UpdateDentist(values);
+    let res = await UpdateMember(values);
     if (res.status) {
       messageApi.open({
         type: "success",
@@ -267,7 +267,6 @@ const MemberEditProfile: FC = () => {
                         <Button
                           type="primary"
                           htmlType="submit"
-                          icon={<PlusOutlined />}
                         >
                           ยืนยัน
                         </Button>
