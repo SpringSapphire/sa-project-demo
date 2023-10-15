@@ -114,7 +114,7 @@ const MemberEditProfile: FC = () => {
     getGender();
     getMemberByUsername();
     getOccupation();
-  }, );
+  }, []);
 
   return (
     <div>

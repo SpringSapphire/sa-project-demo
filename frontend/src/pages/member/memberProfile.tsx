@@ -94,7 +94,7 @@ const MemberProfile: FC = () => {
     getGender();
     getMemberByUsername();
     getOccupation();
-  }, );
+  }, []);
 
   return (
     <div>
@@ -148,7 +148,7 @@ const MemberProfile: FC = () => {
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="ชื่อจริง"
-                      name="Firstname"
+                      name="FirstName"
                       rules={[
                         {
                           required: true,
@@ -163,7 +163,7 @@ const MemberProfile: FC = () => {
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
                       label="นามกสุล"
-                      name="Lastname"
+                      name="LastName"
                       rules={[
                         {
                           required: true,
