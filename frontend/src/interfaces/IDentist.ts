@@ -1,3 +1,4 @@
+import { AdminInterface } from "./IAdmin";
 import { GenderInterface } from "./IGender";
 
 export interface DentistInterface {
@@ -10,6 +11,8 @@ export interface DentistInterface {
     Birthday?: string;
     Phone_number?: string;
 
+    AdminID? : number;
+    Admin: AdminInterface;
     GenderID?: number;
     Gender?: GenderInterface;
 }

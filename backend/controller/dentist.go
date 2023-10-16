@@ -11,6 +11,7 @@ import (
 func CreateDentist(c *gin.Context) {
 	var dentist entity.Dentist
 	var gender entity.Gender
+	var admin entity.Admin
 
 	if err := c.ShouldBindJSON(&dentist); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -22,9 +23,15 @@ func CreateDentist(c *gin.Context) {
 		return
 	}
 
+	if tx := entity.DB().Where("id = ?", dentist.AdminID).First(&admin); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "admin not found"})
+		return
+	}
+
 	//สร้าง dentist
 	d := entity.Dentist{
 		Gender:       gender,
+		Admin:        admin,
 		Username:     dentist.Username,
 		Password:     dentist.Password,
 		FirstName:    dentist.FirstName,

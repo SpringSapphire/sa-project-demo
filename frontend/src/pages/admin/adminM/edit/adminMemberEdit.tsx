@@ -9,12 +9,10 @@ import {
   Input,
   Card,
   message,
-  Upload,
   Select,
   DatePicker,
 } from "antd";
 import type { DatePickerProps } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
 import { MemberInterface } from "../../../../interfaces/IMember";
 import { GenderInterface } from "../../../../interfaces/IGender";
 import { OccupationInterface } from "../../../../interfaces/IOcc";

@@ -1,5 +1,6 @@
 import { OccupationInterface } from "./IOcc";
 import { GenderInterface } from "./IGender";
+import { AdminInterface } from "./IAdmin";
 
 export interface MemberInterface {
     ID? : number;
@@ -11,6 +12,8 @@ export interface MemberInterface {
     Birthday? : string;
     Phone_number? : string;
 
+    AdminID? : number;
+    Admin: AdminInterface;
     GenderID?: number;
     Gender?: GenderInterface;
     OccupationID? : number;

@@ -12,6 +12,7 @@ func CreateMember(c *gin.Context) {
 	var member entity.Member
 	var gender entity.Gender
 	var occupation entity.Occupation
+	var admin entity.Admin
 
 	// bind เข้าตัวแปร members
 	if err := c.ShouldBindJSON(&member); err != nil {
@@ -30,10 +31,16 @@ func CreateMember(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "occupation not found"})
 		return
 	}
+	// ค้นหา admin ด้วย id
+	if tx := entity.DB().Where("id = ?", member.AdminID).First(&admin); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "occupation not found"})
+		return
+	}
 
 	//สร้าง member
 	m := entity.Member{
 		Gender:       gender,
+		Admin:        admin,
 		Occupation:   occupation,
 		Username:     member.Username,
 		Password:     member.Password,

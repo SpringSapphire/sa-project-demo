@@ -22,11 +22,19 @@ func SetupDatabase() {
 		&Gender{},
 		&Member{},
 		&Occupation{},
+		&Admin{},
 	)
-
 	db = database
 
-	// Gender Data
+	usernameA := Admin{
+		Username:  "Komsan",
+		Password:  "0000",
+		FirstName: "Komsansan",
+		LastName:  "sriwichai",
+		Email:     "sansan@gmail.com",
+	}
+	db.Model(&Admin{}).Create(&usernameA)
+
 	male := Gender{
 		Name: "ชาย",
 	}
