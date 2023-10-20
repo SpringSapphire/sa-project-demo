@@ -66,12 +66,12 @@ async function GetOccupations() {
   return res;
 }
 
-async function DeleteDentistByUsername(username: string | undefined) {
+async function DeleteDentistByID(id: Number | undefined) {
   const requestOptions = {
     method: "DELETE"
   };
 
-  let res = await fetch(`${apiUrl}/dentists/${username}`, requestOptions)
+  let res = await fetch(`${apiUrl}/dentists/${id}`, requestOptions)
     .then((response) => response.json())
     .then((res) => {
       if (res.data) {
@@ -84,12 +84,12 @@ async function DeleteDentistByUsername(username: string | undefined) {
   return res;
 }
 
-async function GetDentistByUsername(username: string | undefined) {
+async function GetDentistByID(id: Number | undefined) {
   const requestOptions = {
     method: "GET"
   };
 
-  let res = await fetch(`${apiUrl}/dentist/${username}`, requestOptions)
+  let res = await fetch(`${apiUrl}/dentist/${id}`, requestOptions)
     .then((response) => response.json())
     .then((res) => {
       if (res.data) {
@@ -164,12 +164,12 @@ async function GetMembers() {
   return res;
 }
 
-async function DeleteMemberByUsername(username: string | undefined) {
+async function DeleteMemberByID(id: Number | undefined) {
   const requestOptions = {
     method: "DELETE"
   };
 
-  let res = await fetch(`${apiUrl}/members/${username}`, requestOptions)
+  let res = await fetch(`${apiUrl}/members/${id}`, requestOptions)
     .then((response) => response.json())
     .then((res) => {
       if (res.data) {
@@ -182,12 +182,12 @@ async function DeleteMemberByUsername(username: string | undefined) {
   return res;
 }
 
-async function GetMemberByUsername(username: string | undefined) {
+async function GetMemberByID(id: Number | undefined) {
   const requestOptions = {
     method: "GET"
   };
 
-  let res = await fetch(`${apiUrl}/member/${username}`, requestOptions)
+  let res = await fetch(`${apiUrl}/member/${id}`, requestOptions)
     .then((response) => response.json())
     .then((res) => {
       if (res.data) {
@@ -241,17 +241,39 @@ async function UpdateMember(data: MemberInterface) {
   return res;
 }
 
+async function GetAdmin() {
+  const requestOptions = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  let res = await fetch(`${apiUrl}/admin`, requestOptions)
+    .then((response) => response.json())
+    .then((res) => {
+      if (res.data) {
+        return res.data;
+      } else {
+        return false;
+      }
+    });
+
+  return res;
+}
+
 export {
+  GetAdmin,
   GetDentists,
   CreateDentist,
   GetGenders,
-  DeleteDentistByUsername,
-  GetDentistByUsername,
+  DeleteDentistByID,
+  GetDentistByID,
   UpdateDentist,
   GetMembers,
   CreateMember,
-  DeleteMemberByUsername,
-  GetMemberByUsername,
+  DeleteMemberByID,
+  GetMemberByID,
   UpdateMember,
   GetOccupations,
 };

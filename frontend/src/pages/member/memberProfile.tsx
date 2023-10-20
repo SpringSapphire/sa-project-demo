@@ -18,12 +18,12 @@ import { MemberInterface } from "../../interfaces/IMember";
 import { GenderInterface } from "../../interfaces/IGender";
 import {
   GetGenders,
-  GetMemberByUsername,
+  GetMemberByID,
   GetOccupations,
 } from "../../services/https/https";
 import { useNavigate, useParams } from "react-router-dom";
 import dayjs from "dayjs";
-import { OccupationInterface } from "../../interfaces/IOcc";
+import { OccupationInterface } from "../../interfaces/IOccupation";
 
 const { Option } = Select;
 
@@ -46,13 +46,13 @@ const MemberProfile: FC = () => {
   const [occupations, setOccupation] = useState<OccupationInterface[]>([]);
 
   // รับข้อมูลจาก params ที่ได้จากหน้า login
-  let { username } = useParams();
+  let { id } = useParams();
 
   // อ้างอิง form กรอกข้อมูล
   const [form] = Form.useForm();
 
   const onClick = async () => {
-    navigate(`/member/profile/edit/${member?.Username}`);
+    navigate(`/member/profile/edit/${member?.ID}`);
   };
 
   const [Disabled] = useState<boolean>(true);
@@ -71,8 +71,8 @@ const MemberProfile: FC = () => {
     }
   };
 
-  const getMemberByUsername = async () => {
-    let res = await GetMemberByUsername(username);
+  const getMemberByID = async () => {
+    let res = await GetMemberByID(Number(id));
     if (res) {
       setMember(res);
       // set form ข้อมูลเริ่มของผู่้ใช้ที่เราแก้ไข
@@ -86,13 +86,14 @@ const MemberProfile: FC = () => {
         Phone_number: res.Phone_number,
         Birthday: dayjs(res.Birthday),
         OccupationID: res.OccupationID,
+        AdminID: res.AdminID,
       });
     }
   };
 
   useEffect(() => {
     getGender();
-    getMemberByUsername();
+    getMemberByID();
     getOccupation();
   }, []);
 

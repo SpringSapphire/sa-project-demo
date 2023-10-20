@@ -12,6 +12,7 @@ func CreateDentist(c *gin.Context) {
 	var dentist entity.Dentist
 	var gender entity.Gender
 	var admin entity.Admin
+	// var admin entity.Admin
 
 	if err := c.ShouldBindJSON(&dentist); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -24,7 +25,7 @@ func CreateDentist(c *gin.Context) {
 	}
 
 	if tx := entity.DB().Where("id = ?", dentist.AdminID).First(&admin); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "admin not found"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "gender not found"})
 		return
 	}
 
@@ -48,11 +49,11 @@ func CreateDentist(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": d})
 }
 
-// GET /dentist/:username
+// GET /dentist/:id
 func GetDentist(c *gin.Context) {
 	var dentist entity.Dentist
-	username := c.Param("username")
-	if err := entity.DB().Preload("Gender").Raw("SELECT * FROM dentists WHERE username = ?", username).Find(&dentist).Error; err != nil {
+	id := c.Param("id")
+	if err := entity.DB().Preload("Admin").Preload("Gender").Raw("SELECT * FROM dentists WHERE id = ?", id).Find(&dentist).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -62,7 +63,7 @@ func GetDentist(c *gin.Context) {
 // GET / dentists
 func ListDentists(c *gin.Context) {
 	var dentists []entity.Dentist
-	if err := entity.DB().Preload("Gender").Raw("SELECT * FROM dentists").Find(&dentists).Error; err != nil {
+	if err := entity.DB().Preload("Admin").Preload("Gender").Raw("SELECT * FROM dentists").Find(&dentists).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -71,12 +72,12 @@ func ListDentists(c *gin.Context) {
 
 // DELETE /dentists/:id
 func DeleteDentist(c *gin.Context) {
-	username := c.Param("username")
-	if tx := entity.DB().Exec("DELETE FROM dentists WHERE username = ?", username); tx.RowsAffected == 0 {
+	id := c.Param("id")
+	if tx := entity.DB().Exec("DELETE FROM dentists WHERE id = ?", id); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "dentist not found"})
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"data": username})
+	c.JSON(http.StatusOK, gin.H{"data": id})
 }
 
 // PATCH /dentists
@@ -88,8 +89,8 @@ func UpdateDentist(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	// ค้นหา dentist ด้วย username
-	if tx := entity.DB().Where("username = ?", dentist.Username).First(&result); tx.RowsAffected == 0 {
+	// ค้นหา dentist ด้วย id
+	if tx := entity.DB().Where("id = ?", dentist.ID).First(&result); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "user not found"})
 		return
 	}

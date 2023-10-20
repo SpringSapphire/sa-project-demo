@@ -15,10 +15,10 @@ import {
 import type { DatePickerProps } from "antd";
 import { MemberInterface } from "../../../../interfaces/IMember";
 import { GenderInterface } from "../../../../interfaces/IGender";
-import { OccupationInterface } from "../../../../interfaces/IOcc";
+import { OccupationInterface } from "../../../../interfaces/IOccupation";
 import {
   GetGenders,
-  GetMemberByUsername,
+  GetMemberByID,
   UpdateMember,
   GetOccupations,
 } from "../../../../services/https/https";
@@ -46,11 +46,12 @@ const AdminEditMemberProfile: FC = () => {
   const [occupations, setOccupation] = useState<OccupationInterface[]>([]);
 
   // รับข้อมูลจาก params
-  let { username } = useParams();
+  let { id } = useParams();
   // อ้างอิง form กรอกข้อมูล
   const [form] = Form.useForm();
 
   const onFinish = async (values: MemberInterface) => {
+    values.AdminID = 1;
     values.ID = member?.ID;
     let res = await UpdateMember(values);
     if (res.status) {
@@ -83,8 +84,8 @@ const AdminEditMemberProfile: FC = () => {
     }
   };
 
-  const getMemberByUsername = async () => {
-    let res = await GetMemberByUsername(username);
+  const getMemberByID = async () => {
+    let res = await GetMemberByID(Number(id));
     if (res) {
       setMember(res);
       // set form ข้อมูลเริ่มของผู่้ใช้ที่เราแก้ไข
@@ -98,13 +99,14 @@ const AdminEditMemberProfile: FC = () => {
         Phone_number: res.Phone_number,
         Birthday: dayjs(res.Birthday),
         OccupationID: res.OccupationID,
+        AdminID: res.AdminID,
       });
     }
   };
 
   useEffect(() => {
     getGender();
-    getMemberByUsername();
+    getMemberByID();
     getOccupation();
   }, []);
 

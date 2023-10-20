@@ -9,7 +9,6 @@ import {
   Input,
   Card,
   message,
-  Upload,
   Select,
   DatePicker,
 } from "antd";
@@ -20,7 +19,7 @@ import { GenderInterface } from "../../interfaces/IGender";
 import {
   CreateDentist,
   GetGenders,
-  GetDentistByUsername,
+  GetDentistByID,
   UpdateDentist,
 } from "../../services/https/https";
 import { useNavigate, useParams, Link } from "react-router-dom";
@@ -45,15 +44,12 @@ const DentistProfile: FC = () => {
   const [dentist, setDentist] = useState<DentistInterface>();
   const [genders, setGenders] = useState<GenderInterface[]>([]);
 
-  // รับข้อมูลจาก params ที่ได้จากหน้า login
-  // ถ้าต้องการไป id อื่น ๆ ต้องพิมพ์ ใน URL เอง(ตอนนี้(11/10/2566))
-  let { username } = useParams();
+  let { id } = useParams();
 
-  // อ้างอิง form กรอกข้อมูล
   const [form] = Form.useForm();
 
   const onClick = async () => {
-    navigate(`/dentist/profile/edit/${dentist?.Username}`);
+    navigate(`/dentist/profile/edit/${dentist?.ID}`);
   };
 
   const [Disabled] = useState<boolean>(true);
@@ -65,8 +61,8 @@ const DentistProfile: FC = () => {
     }
   };
 
-  const getDentistById = async () => {
-    let res = await GetDentistByUsername(username);
+  const getDentistByID = async () => {
+    let res = await GetDentistByID(Number(id));
     if (res) {
       setDentist(res);
       // set form ข้อมูลเริ่มของผู่้ใช้ที่เราแก้ไข
@@ -79,13 +75,14 @@ const DentistProfile: FC = () => {
         Email: res.Email,
         Phone_number: res.Phone_number,
         Birthday: dayjs(res.Birthday),
+        AdminID: res.AdminID,
       });
     }
   };
 
   useEffect(() => {
     getGender();
-    getDentistById();
+    getDentistByID();
   }, []);
 
   return (

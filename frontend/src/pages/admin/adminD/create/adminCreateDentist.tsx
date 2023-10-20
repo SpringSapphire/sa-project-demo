@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import { DentistInterface } from "../../../../interfaces/IDentist";
 import { GenderInterface } from "../../../../interfaces/IGender";
-import { CreateDentist, GetGenders } from "../../../../services/https/https";
+import { CreateDentist, GetGenders, GetAdmin } from "../../../../services/https/https";
 import { useNavigate, Link } from "react-router-dom";
 import dayjs from "dayjs";
 import type { DatePickerProps } from "antd";
@@ -19,6 +19,7 @@ import {
   Select,
   DatePicker,
 } from "antd";
+import { AdminInterface } from "../../../../interfaces/IAdmin";
 const { Option } = Select;
 const dateFormat = "DD/MM/YYYY";
 
@@ -39,6 +40,8 @@ const AdminCreateDentist: FC = () => {
   const [messageApi, contextHolder] = message.useMessage();
 
   const onFinish = async (values: DentistInterface) => {
+    values.AdminID = 1;
+    console.log(values.AdminID);
     let res = await CreateDentist(values);
     if (res.status) {
       messageApi.open({
@@ -64,6 +67,7 @@ const AdminCreateDentist: FC = () => {
       setGenders(res);
     }
   };
+
 
   useEffect(() => {
     getGender();

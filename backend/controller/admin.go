@@ -10,7 +10,7 @@ import (
 // GET /admin
 func GetAdmin(c *gin.Context) {
 	var Admin []entity.Admin
-	if err := entity.DB().Raw("SELECT * FROM Admin").Scan(&Admin).Error; err != nil {
+	if err := entity.DB().Raw("SELECT * FROM admins").Scan(&Admin).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}

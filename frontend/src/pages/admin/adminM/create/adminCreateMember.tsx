@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import { MemberInterface } from "../../../../interfaces/IMember";
 import { GenderInterface } from "../../../../interfaces/IGender";
-import { OccupationInterface } from "../../../../interfaces/IOcc";
+import { OccupationInterface } from "../../../../interfaces/IOccupation";
 import {
   CreateMember,
   GetGenders,
@@ -45,6 +45,7 @@ const AdminCreateMember: FC = () => {
   const [messageApi, contextHolder] = message.useMessage();
 
   const onFinish = async (values: MemberInterface) => {
+    values.AdminID = 1;
     let res = await CreateMember(values);
     if (res.status) {
       messageApi.open({

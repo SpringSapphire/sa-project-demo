@@ -63,7 +63,7 @@ const App: React.FC = () => {
                 marginLeft: "15px",
               }}
             >
-              <Link to="/dentist/profile/:username">
+              <Link to="/dentist/profile/:id">
                 <h2>DentistProfile</h2>
               </Link>
             </div>
@@ -75,7 +75,7 @@ const App: React.FC = () => {
                 marginLeft: "15px",
               }}
             >
-              <Link to="/member/profile/:username">
+              <Link to="/member/profile/:id">
                 <h2>MemberProfile</h2>
               </Link>
             </div>
@@ -85,16 +85,16 @@ const App: React.FC = () => {
               <Route path="/" element={<AdminDentist />} />
               <Route path="/admin/dentist" element={<AdminDentist />} />
               <Route path="/admin/dentist/create" element={<AdminCreateDentist />} />
-              <Route path="/admin/dentist/edit/:username" element={<AdminEditDentistProfile />} />
+              <Route path="/admin/dentist/edit/:id" element={<AdminEditDentistProfile />} />
 
               <Route path="/admin/member" element={<AdminMember />} />
               <Route path="/admin/member/create" element={<AdminCreateMember />} />
-              <Route path="/admin/member/edit/:username" element={<AdminEditMemberProfile />} />
+              <Route path="/admin/member/edit/:id" element={<AdminEditMemberProfile />} />
 
-              <Route path="/dentist/profile/:username" element={<DentistProfile />} />
-              <Route path="/dentist/profile/edit/:username" element={<DentistEditProfile />}/>
-              <Route path="/member/profile/:username" element={<MemberProfile />} />
-              <Route path="/member/profile/edit/:username" element={<MemberEditProfile />} />
+              <Route path="/dentist/profile/:id" element={<DentistProfile />} />
+              <Route path="/dentist/profile/edit/:id" element={<DentistEditProfile />}/>
+              <Route path="/member/profile/:id" element={<MemberProfile />} />
+              <Route path="/member/profile/edit/:id" element={<MemberEditProfile />} />
             </Routes>
           </Content>
         </Router>

@@ -16,10 +16,12 @@ import type { DatePickerProps } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { DentistInterface } from "../../../../interfaces/IDentist";
 import { GenderInterface } from "../../../../interfaces/IGender";
+import { AdminInterface } from "../../../../interfaces/IAdmin";
 import {
   GetGenders,
-  GetDentistByUsername,
+  GetDentistByID,
   UpdateDentist,
+  GetAdmin,
 } from "../../../../services/https/https";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import dayjs from "dayjs";
@@ -39,16 +41,18 @@ const onDateChange: DatePickerProps["onChange"] = (date, dateString) => {
 const AdminEditDentistProfile: FC = () => {
   const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
-  const [dentsit, setDentist] = useState<DentistInterface>();
+  const [dentist, setDentist] = useState<DentistInterface>();
   const [genders, setGenders] = useState<GenderInterface[]>([]);
+  const [admin, setAdmin] = useState<AdminInterface>();
 
   // รับข้อมูลจาก params
-  let { username } = useParams();
+  let { id } = useParams();
   // อ้างอิง form กรอกข้อมูล
   const [form] = Form.useForm();
 
   const onFinish = async (values: DentistInterface) => {
-    values.ID = dentsit?.ID;
+    values.AdminID = 1;
+    values.ID = dentist?.ID;
     let res = await UpdateDentist(values);
     if (res.status) {
       messageApi.open({
@@ -73,8 +77,15 @@ const AdminEditDentistProfile: FC = () => {
     }
   };
 
-  const getDentistByUsername = async () => {
-    let res = await GetDentistByUsername(username);
+  const getAdmin = async () => {
+    let res = await GetAdmin();
+    if (res) {
+      setAdmin(res);
+    }
+  };
+
+  const getDentistByID = async () => {
+    let res = await GetDentistByID(Number(id));
     if (res) {
       setDentist(res);
       // set form ข้อมูลเริ่มของผู่้ใช้ที่เราแก้ไข
@@ -87,13 +98,15 @@ const AdminEditDentistProfile: FC = () => {
         Email: res.Email,
         Phone_number: res.Phone_number,
         Birthday: dayjs(res.Birthday),
+        AdminID: res.AdminID,
       });
     }
   };
 
   useEffect(() => {
+    getAdmin();
     getGender();
-    getDentistByUsername();
+    getDentistByID();
   }, []);
 
   return (

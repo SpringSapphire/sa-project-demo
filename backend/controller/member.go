@@ -31,6 +31,7 @@ func CreateMember(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "occupation not found"})
 		return
 	}
+
 	// ค้นหา admin ด้วย id
 	if tx := entity.DB().Where("id = ?", member.AdminID).First(&admin); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "occupation not found"})
@@ -58,11 +59,11 @@ func CreateMember(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": m})
 }
 
-// GET /member/:username
+// GET /member/:id
 func GetMember(c *gin.Context) {
 	var members entity.Member
-	username := c.Param("username")
-	if err := entity.DB().Preload("Gender").Preload("Occupation").Raw("SELECT * FROM members WHERE username = ?", username).Find(&members).Error; err != nil {
+	id := c.Param("id")
+	if err := entity.DB().Preload("Admin").Preload("Gender").Preload("Occupation").Raw("SELECT * FROM members WHERE id = ?", id).Find(&members).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -72,21 +73,21 @@ func GetMember(c *gin.Context) {
 // GET / members
 func ListMembers(c *gin.Context) {
 	var members []entity.Member
-	if err := entity.DB().Preload("Gender").Preload("Occupation").Raw("SELECT * FROM members").Find(&members).Error; err != nil {
+	if err := entity.DB().Preload("Admin").Preload("Gender").Preload("Occupation").Raw("SELECT * FROM members").Find(&members).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{"data": members})
 }
 
-// DELETE /members/:username
+// DELETE /members/:id
 func DeleteMember(c *gin.Context) {
-	username := c.Param("username")
-	if tx := entity.DB().Exec("DELETE FROM members WHERE username = ?", username); tx.RowsAffected == 0 {
+	id := c.Param("id")
+	if tx := entity.DB().Exec("DELETE FROM members WHERE id = ?", id); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "member not found"})
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"data": username})
+	c.JSON(http.StatusOK, gin.H{"data": id})
 }
 
 // PATCH /members
@@ -98,8 +99,8 @@ func UpdateMember(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	// ค้นหา member ด้วย username
-	if tx := entity.DB().Where("username = ?", member.Username).First(&result); tx.RowsAffected == 0 {
+	// ค้นหา member ด้วย id
+	if tx := entity.DB().Where("id = ?", member.ID).First(&result); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "user not found"})
 		return
 	}

@@ -2,7 +2,7 @@ import { AdminInterface } from "./IAdmin";
 import { GenderInterface } from "./IGender";
 
 export interface DentistInterface {
-    ID?: number;
+    ID?: Number;
     Username?: string;
     Password?: string;
     FirstName?: string;
@@ -11,8 +11,8 @@ export interface DentistInterface {
     Birthday?: string;
     Phone_number?: string;
 
-    AdminID? : number;
+    AdminID? : Number;
     Admin: AdminInterface;
-    GenderID?: number;
+    GenderID?: Number;
     Gender?: GenderInterface;
 }

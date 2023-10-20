@@ -19,7 +19,7 @@ import { DentistInterface } from "../../../interfaces/IDentist";
 import { GenderInterface } from "../../../interfaces/IGender";
 import {
   GetGenders,
-  GetDentistByUsername,
+  GetDentistByID,
   UpdateDentist,
 } from "../../../services/https/https";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -45,16 +45,17 @@ const DentistEditProfile: FC = () => {
   const [genders, setGenders] = useState<GenderInterface[]>([]);
 
   // รับข้อมูลจาก params
-  let { username } = useParams();
+  let { id } = useParams();
   // อ้างอิง form กรอกข้อมูล
   const [form] = Form.useForm();
 
   const onClick = async () => {
-    navigate(`/member/profile/${dentist?.Username}`);
+    navigate(`/member/profile/${dentist?.ID}`);
   };
 
   const onFinish = async (values: DentistInterface) => {
     values.ID = dentist?.ID;
+    values.AdminID = 1;
     let res = await UpdateDentist(values);
     if (res.status) {
       messageApi.open({
@@ -62,7 +63,7 @@ const DentistEditProfile: FC = () => {
         content: "แก้ไขข้อมูลสำเร็จ",
       });
       setTimeout(function () {
-        navigate(`/dentist/profile/${dentist?.Username}`);
+        navigate(`/dentist/profile/${dentist?.ID}`);
       }, 2000);
     } else {
       messageApi.open({
@@ -79,8 +80,8 @@ const DentistEditProfile: FC = () => {
     }
   };
 
-  const getDentistByUsername = async () => {
-    let res = await GetDentistByUsername(username);
+  const getDentistByID = async () => {
+    let res = await GetDentistByID(Number(id));
     if (res) {
       setDentist(res);
       // set form ข้อมูลเริ่มของผู่้ใช้ที่เราแก้ไข
@@ -93,13 +94,14 @@ const DentistEditProfile: FC = () => {
         Email: res.Email,
         Phone_number: res.Phone_number,
         Birthday: dayjs(res.Birthday),
+        AdminID: res.AdminID,
       });
     }
   };
 
   useEffect(() => {
     getGender();
-    getDentistByUsername();
+    getDentistByID();
   }, []);
 
   return (

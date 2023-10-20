@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import type { ColumnsType } from "antd/es/table";
 import {
   GetDentists,
-  DeleteDentistByUsername,
+  DeleteDentistByID,
 } from "../../../services/https/https";
 import { PlusOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
@@ -66,7 +66,7 @@ const AdminDentist: FC = () => {
       render: (text, record, index) => (
         <>
           <Button
-            onClick={() => navigate(`/admin/dentist/edit/${record.Username}`)}
+            onClick={() => navigate(`/admin/dentist/edit/${record.ID}`)}
             shape="circle"
             icon={<EditOutlined />}
             size={"large"}
@@ -91,7 +91,7 @@ const AdminDentist: FC = () => {
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [modalText, setModalText] = useState<String>();
-  const [deleteUsername, setDeleteUsername] = useState<string>();
+  const [deleteId, setDeleteId] = useState<Number>();
 
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -108,13 +108,13 @@ const AdminDentist: FC = () => {
     setModalText(
       `คุณต้องการลบข้อมูลผู้ใช้ "${val.FirstName} ${val.LastName}" หรือไม่ ?`
     );
-    setDeleteUsername(val.Username);
+    setDeleteId(val.ID);
     setOpen(true);
   };
 
   const handleOk = async () => {
     setConfirmLoading(true);
-    let res = await DeleteDentistByUsername(deleteUsername);
+    let res = await DeleteDentistByID(deleteId);
     if (res) {
       setOpen(false);
       messageApi.open({

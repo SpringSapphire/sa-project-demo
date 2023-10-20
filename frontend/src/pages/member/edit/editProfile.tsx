@@ -19,13 +19,13 @@ import { MemberInterface } from "../../../interfaces/IMember";
 import { GenderInterface } from "../../../interfaces/IGender";
 import {
   GetGenders,
-  GetMemberByUsername,
+  GetMemberByID,
   UpdateMember,
   GetOccupations,
 } from "../../../services/https/https";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import dayjs from "dayjs";
-import { OccupationInterface } from "../../../interfaces/IOcc";
+import { OccupationInterface } from "../../../interfaces/IOccupation";
 
 const { Option } = Select;
 
@@ -49,15 +49,16 @@ const MemberEditProfile: FC = () => {
 
 
   // รับข้อมูลจาก params
-  let { username } = useParams();
+  let { id } = useParams();
   // อ้างอิง form กรอกข้อมูล
   const [form] = Form.useForm();
 
   const onClick = async () => {
-    navigate(`/member/profile/${member?.Username}`);
+    navigate(`/member/profile/${member?.ID}`);
   };
 
   const onFinish = async (values: MemberInterface) => {
+    values.AdminID = 1;
     values.ID = member?.ID;
     let res = await UpdateMember(values);
     console.log(values);
@@ -67,7 +68,7 @@ const MemberEditProfile: FC = () => {
         content: "แก้ไขข้อมูลสำเร็จ",
       });
       setTimeout(function () {
-        navigate(`/member/profile/${member?.Username}`);
+        navigate(`/member/profile/${member?.ID}`);
       }, 2000);
     } else {
       messageApi.open({
@@ -91,8 +92,8 @@ const MemberEditProfile: FC = () => {
     }
   };
 
-  const getMemberByUsername = async () => {
-    let res = await GetMemberByUsername(username);
+  const getMemberByID = async () => {
+    let res = await GetMemberByID(Number(id));
     if (res) {
       setMember(res);
       // set form ข้อมูลเริ่มของผู่้ใช้ที่เราแก้ไข
@@ -106,13 +107,14 @@ const MemberEditProfile: FC = () => {
         Phone_number: res.Phone_number,
         Birthday: dayjs(res.Birthday),
         OccupationID: res.OccupationID,
+        AdminID: res.AdminID,
       });
     }
   };
 
   useEffect(() => {
     getGender();
-    getMemberByUsername();
+    getMemberByID();
     getOccupation();
   }, []);
 

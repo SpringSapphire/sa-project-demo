@@ -1,4 +1,4 @@
 export interface GenderInterface {
-    ID?: number;
+    ID?: Number;
     Name?: string;
 }
