@@ -124,7 +124,7 @@ const DentistEditProfile: FC = () => {
                 <Row gutter={[16, 16]}>
                   <Col xs={24} sm={24} md={24} lg={24} xl={10}>
                     <Form.Item
-                      label="Username"
+                      label="ชื่อบัญชี"
                       name="Username"
                       rules={[
                         {
@@ -139,7 +139,7 @@ const DentistEditProfile: FC = () => {
                   <Col xs={0} sm={0} md={0} lg={0} xl={2} />
                   <Col xs={24} sm={24} md={24} lg={24} xl={10}>
                     <Form.Item
-                      label="Password"
+                      label="รหัสผ่าน"
                       name="Password"
                       rules={[
                         {
@@ -155,7 +155,7 @@ const DentistEditProfile: FC = () => {
                 <Row gutter={[16, 16]}>
                   <Col xs={24} sm={24} md={24} lg={24} xl={10}>
                     <Form.Item
-                      label="ชื่อจริง"
+                      label="ชื่อ"
                       name="FirstName"
                       rules={[
                         {
@@ -221,8 +221,8 @@ const DentistEditProfile: FC = () => {
                 <Row gutter={[16, 16]}>
                   <Col xs={24} sm={24} md={24} lg={24} xl={10}>
                     <Form.Item
-                      name="GenderID"
                       label="เพศ"
+                      name="GenderID"
                       rules={[{ required: true, message: "กรุณาระบุเพศ !" }]}
                     >
                       <Select allowClear onChange={handleChange}>

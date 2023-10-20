@@ -103,19 +103,19 @@ const AdminCreateMember: FC = () => {
                 <Row gutter={[16, 16]}>
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
-                      label="Username"
+                      label="ชื่อบัญชี"
                       name="Username"
                       rules={[
-                        { required: true, message: "กรุณากรอกชื่อผู้ใช้" },
+                        { required: true, message: "กรุณากรอกชื่อบัญชี" },
                       ]}
                     >
-                      <Input placeholder="ชื่อผู้ใช้" />
+                      <Input placeholder="ชื่อบัญชี" />
                     </Form.Item>
                   </Col>
                   <Col xs={0} sm={2} md={2} lg={2} xl={2} />
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
-                      label="Password"
+                      label="รหัสผ่าน"
                       name="Password"
                       rules={[{ required: true, message: "กรุณากรอกรหัสผ่าน" }]}
                     >
@@ -147,7 +147,7 @@ const AdminCreateMember: FC = () => {
                 <Row gutter={[16, 16]}>
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
-                      label="Email"
+                      label="อีเมล"
                       name="Email"
                       rules={[
                         { type: "email", message: "รูปแบบอีเมลไม่ถูกต้อง !" },
@@ -160,7 +160,7 @@ const AdminCreateMember: FC = () => {
                   <Col xs={0} sm={2} md={2} lg={2} xl={2} />
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
-                      label="Phone_number Number"
+                      label="เบอร์โทรศัพท์"
                       name="Phone_number"
                       rules={[
                         { required: true, message: "กรุณากรอกเบอร์โทรทัศพ์" },
@@ -173,7 +173,7 @@ const AdminCreateMember: FC = () => {
                 <Row gutter={[16, 16]}>
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
-                      label="Gender"
+                      label="เพศ"
                       name="GenderID"
                       rules={[{ required: true, message: "กรุณาเลือกเพศ" }]}
                     >
@@ -189,7 +189,7 @@ const AdminCreateMember: FC = () => {
                   <Col xs={0} sm={2} md={2} lg={2} xl={2} />
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
-                      label="Date of Birth"
+                      label="วันเกิด"
                       name="Birthday"
                       rules={[{ required: true, message: "กรุณากรอกวันเกิด" }]}
                     >

@@ -129,47 +129,47 @@ const AdminEditDentistProfile: FC = () => {
                 <Row gutter={[16, 16]}>
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
-                      label="Username"
+                      label="บัญชี"
                       name="Username"
                       rules={[
                         {
                           required: true,
-                          message: "กรุณากรอกชื่อ !",
+                          message: "กรุณากรอกชื่อบัญชี",
                         },
                       ]}
                     >
-                      <Input />
+                      <Input  placeholder="บัญชี"/>
                     </Form.Item>
                   </Col>
                   <Col xs={0} sm={2} md={2} lg={2} xl={2} />
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
-                      label="Password"
+                      label="รหัสผ่าน"
                       name="Password"
                       rules={[
                         {
                           required: true,
-                          message: "กรุณากรอกชื่อ !",
+                          message: "กรุณากรอกรหัสผ่าน",
                         },
                       ]}
                     >
-                      <Input />
+                      <Input placeholder="รหัสผ่าน"/>
                     </Form.Item>
                   </Col>
                 </Row>
                 <Row gutter={[16, 16]}>
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
-                      label="ชื่อจริง"
+                      label="ชื่อ"
                       name="FirstName"
                       rules={[
                         {
                           required: true,
-                          message: "กรุณากรอกชื่อ !",
+                          message: "กรุณากรอกชื่อ",
                         },
                       ]}
                     >
-                      <Input />
+                      <Input placeholder="ชื่อ"/>
                     </Form.Item>
                   </Col>
                   <Col xs={0} sm={2} md={2} lg={2} xl={2} />
@@ -184,7 +184,7 @@ const AdminEditDentistProfile: FC = () => {
                         },
                       ]}
                     >
-                      <Input />
+                      <Input placeholder="นามกสุล"/>
                     </Form.Item>
                   </Col>
                 </Row>
@@ -219,7 +219,7 @@ const AdminEditDentistProfile: FC = () => {
                         },
                       ]}
                     >
-                      <Input />
+                      <Input placeholder="เบอร์โทรศัพท์"/>
                     </Form.Item>
                   </Col>
                 </Row>

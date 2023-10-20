@@ -131,7 +131,7 @@ const AdminEditMemberProfile: FC = () => {
                 <Row gutter={[16, 16]}>
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
-                      label="Username"
+                      label="ชื่อบัญชี"
                       name="Username"
                       rules={[
                         {
@@ -146,7 +146,7 @@ const AdminEditMemberProfile: FC = () => {
                   <Col xs={0} sm={2} md={2} lg={2} xl={2} />
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
-                      label="Password"
+                      label="รหัสผ่าน"
                       name="Password"
                       rules={[
                         {
@@ -162,7 +162,7 @@ const AdminEditMemberProfile: FC = () => {
                 <Row gutter={[16, 16]}>
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
-                      label="ชื่อจริง"
+                      label="ชื่อ"
                       name="FirstName"
                       rules={[
                         {
@@ -228,8 +228,8 @@ const AdminEditMemberProfile: FC = () => {
                 <Row gutter={[16, 16]}>
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
-                      name="GenderID"
                       label="เพศ"
+                      name="GenderID"
                       rules={[{ required: true, message: "กรุณาระบุเพศ !" }]}
                     >
                       <Select allowClear onChange={handleChange}>
@@ -264,8 +264,8 @@ const AdminEditMemberProfile: FC = () => {
                 <Row gutter={[16, 16]}>
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
-                      name="OccupationID"
                       label="อาชีพ"
+                      name="OccupationID"
                       rules={[{ required: true, message: "กรุณาอาชีพ !" }]}
                     >
                       <Select allowClear onChange={handleChange}>

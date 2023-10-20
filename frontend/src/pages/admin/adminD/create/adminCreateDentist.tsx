@@ -95,10 +95,10 @@ const AdminCreateDentist: FC = () => {
                       label="Username"
                       name="Username"
                       rules={[
-                        { required: true, message: "กรุณากรอกชื่อผู้ใช้" },
+                        { required: true, message: "กรุณากรอกชื่อบัญชี" },
                       ]}
                     >
-                      <Input placeholder="ชื่อผู้ใช้" />
+                      <Input placeholder="ชื่อบัญชี" />
                     </Form.Item>
                   </Col>
                   <Col xs={0} sm={2} md={2} lg={2} xl={2} />
