@@ -92,7 +92,7 @@ const AdminCreateDentist: FC = () => {
                 <Row gutter={[16, 16]}>
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
-                      label="Username"
+                      label="ชื่อ"
                       name="Username"
                       rules={[
                         { required: true, message: "กรุณากรอกชื่อบัญชี" },
@@ -104,7 +104,7 @@ const AdminCreateDentist: FC = () => {
                   <Col xs={0} sm={2} md={2} lg={2} xl={2} />
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
-                      label="Password"
+                      label="นามสกุล"
                       name="Password"
                       rules={[{ required: true, message: "กรุณากรอกรหัสผ่าน" }]}
                     >
@@ -136,7 +136,7 @@ const AdminCreateDentist: FC = () => {
                 <Row gutter={[16, 16]}>
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
-                      label="Email"
+                      label="อีเมล"
                       name="Email"
                       rules={[
                         { type: "email", message: "รูปแบบอีเมลไม่ถูกต้อง !" },
@@ -149,7 +149,7 @@ const AdminCreateDentist: FC = () => {
                   <Col xs={0} sm={2} md={2} lg={2} xl={2} />
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
-                      label="Phone_number Number"
+                      label="เบอโทรศัพท์"
                       name="Phone_number"
                       rules={[
                         { required: true, message: "กรุณากรอกเบอร์โทรทัศพ์" },
@@ -162,7 +162,7 @@ const AdminCreateDentist: FC = () => {
                 <Row gutter={[16, 16]}>
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
-                      label="Gender"
+                      label="เพศ"
                       name="GenderID"
                       rules={[{ required: true, message: "กรุณาเลือกเพศ" }]}
                     >
@@ -178,7 +178,7 @@ const AdminCreateDentist: FC = () => {
                   <Col xs={0} sm={2} md={2} lg={2} xl={2} />
                   <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                     <Form.Item
-                      label="Date of Birth"
+                      label="วันเกิด"
                       name="Birthday"
                       rules={[{ required: true, message: "กรุณากรอกวันเกิด" }]}
                     >
