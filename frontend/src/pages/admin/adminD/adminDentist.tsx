@@ -141,7 +141,7 @@ const AdminDentist: FC = () => {
   }, []);
 
   return (
-    <main>
+    <div className="AdminDentistData">
       {contextHolder}
       <Card style={{ height: "80vh" }}>
         <Card>
@@ -190,7 +190,7 @@ const AdminDentist: FC = () => {
           </Modal>
         </Card>
       </Card>
-    </main>
+    </div>
   );
 };
 

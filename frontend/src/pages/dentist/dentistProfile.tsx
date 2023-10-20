@@ -86,7 +86,7 @@ const DentistProfile: FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className="DintistProfile">
       {contextHolder}
       <Card>
         <h2> ข้อมูลส่วนตัวทันตแพทย์ </h2>

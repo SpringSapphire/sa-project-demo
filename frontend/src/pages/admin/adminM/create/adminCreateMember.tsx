@@ -84,7 +84,7 @@ const AdminCreateMember: FC = () => {
   }, []);
 
   return (
-    <>
+    <div className="AdminMemberCreate">
       {contextHolder}
       <Card>
         <Form
@@ -246,7 +246,7 @@ const AdminCreateMember: FC = () => {
           </Row>
         </Form>
       </Card>
-    </>
+    </div>
   );
 };
 export default AdminCreateMember;

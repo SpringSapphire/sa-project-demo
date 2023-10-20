@@ -110,7 +110,7 @@ const AdminEditDentistProfile: FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className="AdminDentistEdit">
       {contextHolder}
       <Card>
         <Form

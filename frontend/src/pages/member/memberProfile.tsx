@@ -98,7 +98,7 @@ const MemberProfile: FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className="MemberProfile">
       {contextHolder}
       <Card>
         <h2> ข้อมูลส่วนตัวสมาชิก </h2>

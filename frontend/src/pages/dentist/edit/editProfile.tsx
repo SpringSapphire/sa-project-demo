@@ -105,7 +105,7 @@ const DentistEditProfile: FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className="DentistEditProfile">
       {contextHolder}
       <Card>
         <h2> แก้ไขข้อมูลส่วนตัว </h2>

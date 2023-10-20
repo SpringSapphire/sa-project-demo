@@ -119,7 +119,7 @@ const MemberEditProfile: FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className="MemberEditProfile">
       {contextHolder}
       <Card>
         <h2> แก้ไขข้อมูลส่วนตัว </h2>

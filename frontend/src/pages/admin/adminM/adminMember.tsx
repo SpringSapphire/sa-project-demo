@@ -147,7 +147,7 @@ const AdminMember: FC = () => {
   }, []);
 
   return (
-    <main>
+    <div className="AdminMemberData">
       {contextHolder}
       <Card style={{ height: "80vh" }}>
         <Card>
@@ -196,7 +196,7 @@ const AdminMember: FC = () => {
           </Modal>
         </Card>
       </Card>
-    </main>
+    </div>
   );
 };
 

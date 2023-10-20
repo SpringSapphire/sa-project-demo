@@ -111,7 +111,7 @@ const AdminEditMemberProfile: FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className="AdminMemberEdit">
       {contextHolder}
       <Card>
         <Form

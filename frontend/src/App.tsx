@@ -18,11 +18,6 @@ import { start } from "repl";
 const { Header, Content } = Layout;
 
 const App: React.FC = () => {
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
-
-  let { id } = useParams();
 
   return (
     <div style={{ height: "200px" }}>

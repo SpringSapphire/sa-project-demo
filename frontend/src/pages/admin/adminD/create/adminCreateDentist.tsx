@@ -74,7 +74,7 @@ const AdminCreateDentist: FC = () => {
   }, []);
 
   return (
-    <>
+    <div className="AdminDetistCreate">
       {contextHolder}
       <Card>
         <Form
@@ -218,7 +218,7 @@ const AdminCreateDentist: FC = () => {
           </Row>
         </Form>
       </Card>
-    </>
+    </div>
   );
 };
 export default AdminCreateDentist;
